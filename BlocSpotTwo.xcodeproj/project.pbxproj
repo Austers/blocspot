@@ -7,13 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131D09D01A44670B00233878 /* ListTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 131D09CF1A44670B00233878 /* ListTabBarViewController.m */; };
+		131D09D31A44759500233878 /* ListAZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 131D09D21A44759500233878 /* ListAZViewController.m */; };
+		131D09D61A447D8B00233878 /* ListAZPOITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 131D09D51A447D8B00233878 /* ListAZPOITVC.m */; };
+		131D09D91A470E1D00233878 /* EditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 131D09D81A470E1D00233878 /* EditPOIViewController.m */; };
+		1344F08B1A409A63002BB242 /* Viewtest.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1344F08A1A409A63002BB242 /* Viewtest.xib */; };
+		13561B761A27D81100C72FEA /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 13561B751A27D81100C72FEA /* CustomAnnotation.m */; };
+		13561B791A27FAD000C72FEA /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13561B781A27FAD000C72FEA /* DetailViewController.m */; };
+		13561B7C1A2F939900C72FEA /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13561B7B1A2F939900C72FEA /* CategoryViewController.m */; };
 		136663381A10A709003D9F49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 136663371A10A709003D9F49 /* main.m */; };
 		1366633B1A10A709003D9F49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366633A1A10A709003D9F49 /* AppDelegate.m */; };
-		1366633E1A10A709003D9F49 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1366633D1A10A709003D9F49 /* ViewController.m */; };
 		136663411A10A709003D9F49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1366633F1A10A709003D9F49 /* Main.storyboard */; };
 		136663431A10A709003D9F49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 136663421A10A709003D9F49 /* Images.xcassets */; };
 		136663461A10A709003D9F49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 136663441A10A709003D9F49 /* LaunchScreen.xib */; };
 		136663521A10A709003D9F49 /* BlocSpotTwoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 136663511A10A709003D9F49 /* BlocSpotTwoTests.m */; };
+		1366635C1A12047C003D9F49 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1366635B1A12047C003D9F49 /* MapKit.framework */; };
+		1368664B1A3E6D2200391018 /* BlocSpot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 136866491A3E6D2200391018 /* BlocSpot.xcdatamodeld */; };
+		1368664E1A3E759200391018 /* EditCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1368664D1A3E759200391018 /* EditCategoryViewController.m */; };
+		136866511A3E768700391018 /* SaveNewCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136866501A3E768700391018 /* SaveNewCategoryViewController.m */; };
+		136866541A3E853900391018 /* CategoryCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 136866531A3E853900391018 /* CategoryCellTableViewCell.m */; };
+		136866571A3FDEDD00391018 /* EditExistingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136866561A3FDEDD00391018 /* EditExistingViewController.m */; };
+		1368665A1A4007D800391018 /* SavedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136866591A4007D800391018 /* SavedDetailViewController.m */; };
+		13D4496F1A4839650072551E /* ListDistanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D4496E1A4839650072551E /* ListDistanceViewController.m */; };
+		13D449721A4839910072551E /* ListDateAddedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D449711A4839910072551E /* ListDateAddedViewController.m */; };
+		13D449751A483CF10072551E /* ListDatePOITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D449741A483CF10072551E /* ListDatePOITVC.m */; };
+		13D449781A4844BA0072551E /* ListDistancePOITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D449771A4844BA0072551E /* ListDistancePOITVC.m */; };
+		13D4497B1A484B3B0072551E /* ListCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D4497A1A484B3B0072551E /* ListCategoryViewController.m */; };
+		13D4497E1A484B8C0072551E /* ListCategoryPOITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D4497D1A484B8C0072551E /* ListCategoryPOITVC.m */; };
+		13D449811A48625F0072551E /* ColourSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D449801A48625F0072551E /* ColourSelectViewController.m */; };
+		13D449841A4864AC0072551E /* ColorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D449831A4864AC0072551E /* ColorCollectionViewCell.m */; };
+		13EA1CF21A24037D00E628E9 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EA1CF11A24037D00E628E9 /* SearchViewController.m */; };
+		13EA1CF51A24042800E628E9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EA1CF41A24042800E628E9 /* MapViewController.m */; };
+		13EA1CF81A24CBC700E628E9 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EA1CF71A24CBC700E628E9 /* DataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +52,66 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		131D09CE1A44670B00233878 /* ListTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListTabBarViewController.h; path = BlocSpotTwo/ListTabBarViewController.h; sourceTree = "<group>"; };
+		131D09CF1A44670B00233878 /* ListTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListTabBarViewController.m; path = BlocSpotTwo/ListTabBarViewController.m; sourceTree = "<group>"; };
+		131D09D11A44759500233878 /* ListAZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListAZViewController.h; path = BlocSpotTwo/ListAZViewController.h; sourceTree = "<group>"; };
+		131D09D21A44759500233878 /* ListAZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListAZViewController.m; path = BlocSpotTwo/ListAZViewController.m; sourceTree = "<group>"; };
+		131D09D41A447D8B00233878 /* ListAZPOITVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListAZPOITVC.h; path = BlocSpotTwo/ListAZPOITVC.h; sourceTree = "<group>"; };
+		131D09D51A447D8B00233878 /* ListAZPOITVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListAZPOITVC.m; path = BlocSpotTwo/ListAZPOITVC.m; sourceTree = "<group>"; };
+		131D09D71A470E1D00233878 /* EditPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditPOIViewController.h; path = BlocSpotTwo/EditPOIViewController.h; sourceTree = "<group>"; };
+		131D09D81A470E1D00233878 /* EditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPOIViewController.m; path = BlocSpotTwo/EditPOIViewController.m; sourceTree = "<group>"; };
+		1344F08A1A409A63002BB242 /* Viewtest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Viewtest.xib; sourceTree = "<group>"; };
+		13561B741A27D81100C72FEA /* CustomAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAnnotation.h; path = BlocSpotTwo/CustomAnnotation.h; sourceTree = "<group>"; };
+		13561B751A27D81100C72FEA /* CustomAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAnnotation.m; path = BlocSpotTwo/CustomAnnotation.m; sourceTree = "<group>"; };
+		13561B771A27FAD000C72FEA /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = BlocSpotTwo/DetailViewController.h; sourceTree = "<group>"; };
+		13561B781A27FAD000C72FEA /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = BlocSpotTwo/DetailViewController.m; sourceTree = "<group>"; };
+		13561B7A1A2F939900C72FEA /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryViewController.h; path = BlocSpotTwo/CategoryViewController.h; sourceTree = "<group>"; };
+		13561B7B1A2F939900C72FEA /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryViewController.m; path = BlocSpotTwo/CategoryViewController.m; sourceTree = "<group>"; };
 		136663321A10A709003D9F49 /* BlocSpotTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocSpotTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		136663361A10A709003D9F49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		136663371A10A709003D9F49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		136663391A10A709003D9F49 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1366633A1A10A709003D9F49 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1366633C1A10A709003D9F49 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1366633D1A10A709003D9F49 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		136663401A10A709003D9F49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		136663421A10A709003D9F49 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		136663451A10A709003D9F49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1366634B1A10A709003D9F49 /* BlocSpotTwoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocSpotTwoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		136663501A10A709003D9F49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		136663511A10A709003D9F49 /* BlocSpotTwoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocSpotTwoTests.m; sourceTree = "<group>"; };
+		1366635B1A12047C003D9F49 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1368664A1A3E6D2200391018 /* BlocSpot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BlocSpot.xcdatamodel; sourceTree = "<group>"; };
+		1368664C1A3E759200391018 /* EditCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditCategoryViewController.h; path = BlocSpotTwo/EditCategoryViewController.h; sourceTree = "<group>"; };
+		1368664D1A3E759200391018 /* EditCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditCategoryViewController.m; path = BlocSpotTwo/EditCategoryViewController.m; sourceTree = "<group>"; };
+		1368664F1A3E768700391018 /* SaveNewCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaveNewCategoryViewController.h; path = BlocSpotTwo/SaveNewCategoryViewController.h; sourceTree = "<group>"; };
+		136866501A3E768700391018 /* SaveNewCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaveNewCategoryViewController.m; path = BlocSpotTwo/SaveNewCategoryViewController.m; sourceTree = "<group>"; };
+		136866521A3E853900391018 /* CategoryCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryCellTableViewCell.h; path = BlocSpotTwo/CategoryCellTableViewCell.h; sourceTree = "<group>"; };
+		136866531A3E853900391018 /* CategoryCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryCellTableViewCell.m; path = BlocSpotTwo/CategoryCellTableViewCell.m; sourceTree = "<group>"; };
+		136866551A3FDEDD00391018 /* EditExistingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditExistingViewController.h; path = BlocSpotTwo/EditExistingViewController.h; sourceTree = "<group>"; };
+		136866561A3FDEDD00391018 /* EditExistingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditExistingViewController.m; path = BlocSpotTwo/EditExistingViewController.m; sourceTree = "<group>"; };
+		136866581A4007D800391018 /* SavedDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SavedDetailViewController.h; path = BlocSpotTwo/SavedDetailViewController.h; sourceTree = "<group>"; };
+		136866591A4007D800391018 /* SavedDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SavedDetailViewController.m; path = BlocSpotTwo/SavedDetailViewController.m; sourceTree = "<group>"; };
+		13D4496D1A4839650072551E /* ListDistanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListDistanceViewController.h; path = BlocSpotTwo/ListDistanceViewController.h; sourceTree = "<group>"; };
+		13D4496E1A4839650072551E /* ListDistanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListDistanceViewController.m; path = BlocSpotTwo/ListDistanceViewController.m; sourceTree = "<group>"; };
+		13D449701A4839910072551E /* ListDateAddedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListDateAddedViewController.h; path = BlocSpotTwo/ListDateAddedViewController.h; sourceTree = "<group>"; };
+		13D449711A4839910072551E /* ListDateAddedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListDateAddedViewController.m; path = BlocSpotTwo/ListDateAddedViewController.m; sourceTree = "<group>"; };
+		13D449731A483CF10072551E /* ListDatePOITVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListDatePOITVC.h; path = BlocSpotTwo/ListDatePOITVC.h; sourceTree = "<group>"; };
+		13D449741A483CF10072551E /* ListDatePOITVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListDatePOITVC.m; path = BlocSpotTwo/ListDatePOITVC.m; sourceTree = "<group>"; };
+		13D449761A4844BA0072551E /* ListDistancePOITVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListDistancePOITVC.h; path = BlocSpotTwo/ListDistancePOITVC.h; sourceTree = "<group>"; };
+		13D449771A4844BA0072551E /* ListDistancePOITVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListDistancePOITVC.m; path = BlocSpotTwo/ListDistancePOITVC.m; sourceTree = "<group>"; };
+		13D449791A484B3B0072551E /* ListCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListCategoryViewController.h; path = BlocSpotTwo/ListCategoryViewController.h; sourceTree = "<group>"; };
+		13D4497A1A484B3B0072551E /* ListCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListCategoryViewController.m; path = BlocSpotTwo/ListCategoryViewController.m; sourceTree = "<group>"; };
+		13D4497C1A484B8C0072551E /* ListCategoryPOITVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListCategoryPOITVC.h; path = BlocSpotTwo/ListCategoryPOITVC.h; sourceTree = "<group>"; };
+		13D4497D1A484B8C0072551E /* ListCategoryPOITVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListCategoryPOITVC.m; path = BlocSpotTwo/ListCategoryPOITVC.m; sourceTree = "<group>"; };
+		13D4497F1A48625F0072551E /* ColourSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColourSelectViewController.h; path = BlocSpotTwo/ColourSelectViewController.h; sourceTree = "<group>"; };
+		13D449801A48625F0072551E /* ColourSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColourSelectViewController.m; path = BlocSpotTwo/ColourSelectViewController.m; sourceTree = "<group>"; };
+		13D449821A4864AC0072551E /* ColorCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorCollectionViewCell.h; path = BlocSpotTwo/ColorCollectionViewCell.h; sourceTree = "<group>"; };
+		13D449831A4864AC0072551E /* ColorCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorCollectionViewCell.m; path = BlocSpotTwo/ColorCollectionViewCell.m; sourceTree = "<group>"; };
+		13EA1CF01A24037D00E628E9 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = BlocSpotTwo/SearchViewController.h; sourceTree = "<group>"; };
+		13EA1CF11A24037D00E628E9 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = BlocSpotTwo/SearchViewController.m; sourceTree = "<group>"; };
+		13EA1CF31A24042800E628E9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = BlocSpotTwo/MapViewController.h; sourceTree = "<group>"; };
+		13EA1CF41A24042800E628E9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = BlocSpotTwo/MapViewController.m; sourceTree = "<group>"; };
+		13EA1CF61A24CBC700E628E9 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSource.h; path = BlocSpotTwo/DataSource.h; sourceTree = "<group>"; };
+		13EA1CF71A24CBC700E628E9 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSource.m; path = BlocSpotTwo/DataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1366635C1A12047C003D9F49 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +136,7 @@
 		136663291A10A709003D9F49 = {
 			isa = PBXGroup;
 			children = (
+				1366635B1A12047C003D9F49 /* MapKit.framework */,
 				136663341A10A709003D9F49 /* BlocSpotTwo */,
 				1366634E1A10A709003D9F49 /* BlocSpotTwoTests */,
 				136663331A10A709003D9F49 /* Products */,
@@ -83,12 +157,17 @@
 			children = (
 				136663391A10A709003D9F49 /* AppDelegate.h */,
 				1366633A1A10A709003D9F49 /* AppDelegate.m */,
-				1366633C1A10A709003D9F49 /* ViewController.h */,
-				1366633D1A10A709003D9F49 /* ViewController.m */,
 				1366633F1A10A709003D9F49 /* Main.storyboard */,
 				136663421A10A709003D9F49 /* Images.xcassets */,
 				136663441A10A709003D9F49 /* LaunchScreen.xib */,
+				136866491A3E6D2200391018 /* BlocSpot.xcdatamodeld */,
+				13D449661A4838A80072551E /* Tab Bar Controllers */,
+				13D449631A471A760072551E /* Fresh POI Controllers */,
+				13D449621A471A1F0072551E /* Category Classes */,
+				13D449651A471B2D0072551E /* Point Of Interest Controllers */,
+				13D449641A471AF50072551E /* Map Controllers */,
 				136663351A10A709003D9F49 /* Supporting Files */,
+				1344F08A1A409A63002BB242 /* Viewtest.xib */,
 			);
 			path = BlocSpotTwo;
 			sourceTree = "<group>";
@@ -117,6 +196,92 @@
 				136663501A10A709003D9F49 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13D449621A471A1F0072551E /* Category Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1368664F1A3E768700391018 /* SaveNewCategoryViewController.h */,
+				136866501A3E768700391018 /* SaveNewCategoryViewController.m */,
+				136866551A3FDEDD00391018 /* EditExistingViewController.h */,
+				136866561A3FDEDD00391018 /* EditExistingViewController.m */,
+				136866521A3E853900391018 /* CategoryCellTableViewCell.h */,
+				136866531A3E853900391018 /* CategoryCellTableViewCell.m */,
+				13D4497F1A48625F0072551E /* ColourSelectViewController.h */,
+				13D449801A48625F0072551E /* ColourSelectViewController.m */,
+				13D449821A4864AC0072551E /* ColorCollectionViewCell.h */,
+				13D449831A4864AC0072551E /* ColorCollectionViewCell.m */,
+			);
+			name = "Category Classes";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		13D449631A471A760072551E /* Fresh POI Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				13EA1CF01A24037D00E628E9 /* SearchViewController.h */,
+				13EA1CF11A24037D00E628E9 /* SearchViewController.m */,
+				13EA1CF61A24CBC700E628E9 /* DataSource.h */,
+				13EA1CF71A24CBC700E628E9 /* DataSource.m */,
+			);
+			name = "Fresh POI Controllers";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		13D449641A471AF50072551E /* Map Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				13561B741A27D81100C72FEA /* CustomAnnotation.h */,
+				13561B751A27D81100C72FEA /* CustomAnnotation.m */,
+				13EA1CF31A24042800E628E9 /* MapViewController.h */,
+				13EA1CF41A24042800E628E9 /* MapViewController.m */,
+			);
+			name = "Map Controllers";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		13D449651A471B2D0072551E /* Point Of Interest Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				131D09D71A470E1D00233878 /* EditPOIViewController.h */,
+				131D09D81A470E1D00233878 /* EditPOIViewController.m */,
+				13561B7A1A2F939900C72FEA /* CategoryViewController.h */,
+				13561B7B1A2F939900C72FEA /* CategoryViewController.m */,
+				13561B771A27FAD000C72FEA /* DetailViewController.h */,
+				13561B781A27FAD000C72FEA /* DetailViewController.m */,
+				136866581A4007D800391018 /* SavedDetailViewController.h */,
+				136866591A4007D800391018 /* SavedDetailViewController.m */,
+				1368664C1A3E759200391018 /* EditCategoryViewController.h */,
+				1368664D1A3E759200391018 /* EditCategoryViewController.m */,
+			);
+			name = "Point Of Interest Controllers";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		13D449661A4838A80072551E /* Tab Bar Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				131D09CE1A44670B00233878 /* ListTabBarViewController.h */,
+				131D09CF1A44670B00233878 /* ListTabBarViewController.m */,
+				13D449791A484B3B0072551E /* ListCategoryViewController.h */,
+				13D4497A1A484B3B0072551E /* ListCategoryViewController.m */,
+				13D4497C1A484B8C0072551E /* ListCategoryPOITVC.h */,
+				13D4497D1A484B8C0072551E /* ListCategoryPOITVC.m */,
+				131D09D11A44759500233878 /* ListAZViewController.h */,
+				131D09D21A44759500233878 /* ListAZViewController.m */,
+				131D09D41A447D8B00233878 /* ListAZPOITVC.h */,
+				131D09D51A447D8B00233878 /* ListAZPOITVC.m */,
+				13D4496D1A4839650072551E /* ListDistanceViewController.h */,
+				13D4496E1A4839650072551E /* ListDistanceViewController.m */,
+				13D449761A4844BA0072551E /* ListDistancePOITVC.h */,
+				13D449771A4844BA0072551E /* ListDistancePOITVC.m */,
+				13D449701A4839910072551E /* ListDateAddedViewController.h */,
+				13D449711A4839910072551E /* ListDateAddedViewController.m */,
+				13D449731A483CF10072551E /* ListDatePOITVC.h */,
+				13D449741A483CF10072551E /* ListDatePOITVC.m */,
+			);
+			name = "Tab Bar Controllers";
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1344F08B1A409A63002BB242 /* Viewtest.xib in Resources */,
 				136663411A10A709003D9F49 /* Main.storyboard in Resources */,
 				136663461A10A709003D9F49 /* LaunchScreen.xib in Resources */,
 				136663431A10A709003D9F49 /* Images.xcassets in Resources */,
@@ -219,9 +385,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1366633E1A10A709003D9F49 /* ViewController.m in Sources */,
+				1368664B1A3E6D2200391018 /* BlocSpot.xcdatamodeld in Sources */,
+				13D449811A48625F0072551E /* ColourSelectViewController.m in Sources */,
+				13D449781A4844BA0072551E /* ListDistancePOITVC.m in Sources */,
+				13561B7C1A2F939900C72FEA /* CategoryViewController.m in Sources */,
+				136866511A3E768700391018 /* SaveNewCategoryViewController.m in Sources */,
+				1368664E1A3E759200391018 /* EditCategoryViewController.m in Sources */,
+				131D09D01A44670B00233878 /* ListTabBarViewController.m in Sources */,
 				1366633B1A10A709003D9F49 /* AppDelegate.m in Sources */,
+				131D09D61A447D8B00233878 /* ListAZPOITVC.m in Sources */,
+				1368665A1A4007D800391018 /* SavedDetailViewController.m in Sources */,
+				13D449751A483CF10072551E /* ListDatePOITVC.m in Sources */,
+				131D09D31A44759500233878 /* ListAZViewController.m in Sources */,
+				13EA1CF81A24CBC700E628E9 /* DataSource.m in Sources */,
+				13EA1CF21A24037D00E628E9 /* SearchViewController.m in Sources */,
+				136866541A3E853900391018 /* CategoryCellTableViewCell.m in Sources */,
+				13D4496F1A4839650072551E /* ListDistanceViewController.m in Sources */,
+				13D449841A4864AC0072551E /* ColorCollectionViewCell.m in Sources */,
+				13561B761A27D81100C72FEA /* CustomAnnotation.m in Sources */,
+				13EA1CF51A24042800E628E9 /* MapViewController.m in Sources */,
+				13D449721A4839910072551E /* ListDateAddedViewController.m in Sources */,
 				136663381A10A709003D9F49 /* main.m in Sources */,
+				13561B791A27FAD000C72FEA /* DetailViewController.m in Sources */,
+				136866571A3FDEDD00391018 /* EditExistingViewController.m in Sources */,
+				131D09D91A470E1D00233878 /* EditPOIViewController.m in Sources */,
+				13D4497E1A484B8C0072551E /* ListCategoryPOITVC.m in Sources */,
+				13D4497B1A484B3B0072551E /* ListCategoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +601,7 @@
 				136663571A10A709003D9F49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		136663581A10A709003D9F49 /* Build configuration list for PBXNativeTarget "BlocSpotTwoTests" */ = {
 			isa = XCConfigurationList;
@@ -420,8 +610,22 @@
 				1366635A1A10A709003D9F49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		136866491A3E6D2200391018 /* BlocSpot.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1368664A1A3E6D2200391018 /* BlocSpot.xcdatamodel */,
+			);
+			currentVersion = 1368664A1A3E6D2200391018 /* BlocSpot.xcdatamodel */;
+			path = BlocSpot.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1366632A1A10A709003D9F49 /* Project object */;
 }

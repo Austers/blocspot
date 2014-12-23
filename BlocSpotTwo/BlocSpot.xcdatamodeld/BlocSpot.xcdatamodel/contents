@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Category" syncable="YES">
+        <attribute name="colour" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="assignedTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PointOfInterest" inverseName="hasCategory" inverseEntity="PointOfInterest" syncable="YES"/>
+    </entity>
+    <entity name="PointOfInterest" syncable="YES">
+        <attribute name="customDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateSaved" attributeType="Date" syncable="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visited" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="hasCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="assignedTo" inverseEntity="Category" syncable="YES"/>
+    </entity>
+    <entity name="SearchHistory" syncable="YES">
+        <attribute name="searchName" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Category" positionX="171" positionY="-9" width="128" height="105"/>
+        <element name="PointOfInterest" positionX="-54" positionY="-9" width="128" height="178"/>
+        <element name="SearchHistory" positionX="-27" positionY="-135" width="128" height="58"/>
+    </elements>
+</model>
