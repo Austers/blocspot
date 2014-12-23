@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSIndexPath *selection;
 
+@property (nonatomic, strong) UILabel *categoryLabel;
+
 @end
 
 @implementation ListCategoryViewController
@@ -105,7 +107,23 @@
     NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     [cell.pointOfInterestLabel setText:[record valueForKey:@"name"]];
-    cell.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+    
+    NSString *categoryName = [[record valueForKey:@"hasCategory"]valueForKey:@"name"];
+    NSString *categoryLetter = [categoryName substringToIndex:1];
+    categoryLetter = [categoryLetter uppercaseString];
+    
+    
+    self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    self.categoryLabel.text = categoryLetter;
+    self.categoryLabel.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+    self.categoryLabel.textColor = [UIColor whiteColor];
+    self.categoryLabel.textAlignment = NSTextAlignmentCenter;
+    self.categoryLabel.font = [UIFont systemFontOfSize:24];
+    
+    
+    cell.accessoryView = self.categoryLabel;
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

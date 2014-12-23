@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong) NSIndexPath *selection;
 
+@property (nonatomic, strong) UILabel *categoryLabel;
+
 
 @end
 
@@ -117,8 +119,25 @@
         NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
         [cell.textLabel setText:[record valueForKey:@"name"]];
-        cell.backgroundColor = cell.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+       
+        
+        NSString *categoryName = [[record valueForKey:@"hasCategory"]valueForKey:@"name"];
+        NSString *categoryLetter = [categoryName substringToIndex:1];
+        categoryLetter = [categoryLetter uppercaseString];
+        
+        
+        self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 65, 65)];
+        self.categoryLabel.text = categoryLetter;
+        self.categoryLabel.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+        self.categoryLabel.textColor = [UIColor whiteColor];
+        self.categoryLabel.textAlignment = NSTextAlignmentCenter;
+        self.categoryLabel.font = [UIFont systemFontOfSize:30];
+        
+    
+        cell.accessoryView = self.categoryLabel;
+        cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.detailTextLabel.text = @"";
+        
         
         return cell;
     
