@@ -26,6 +26,7 @@
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSString *category;
+@property (nonatomic, strong) UIColor *categoryBackgroundColour;
 
 @end
 
@@ -61,7 +62,9 @@
     }
     
     self.categoryLabel.text = self.category;
+    self.categoryLabel.textColor = [UIColor whiteColor];
     self.descriptionTextLabel.text = self.descriptionText;
+    self.categoryBackground.backgroundColor = self.categoryBackgroundColour;
     
 }
 
@@ -138,6 +141,8 @@
     self.phone = (NSString *)[fetchedPOI valueForKey:@"phone"];
     self.descriptionText = (NSString *)[fetchedPOI valueForKey:@"customDescription"];
     self.category = (NSString *)[[fetchedPOI valueForKey:@"hasCategory"]valueForKey:@"name"];
+    self.category = [self.category uppercaseString];
+    self.categoryBackgroundColour = (UIColor *)[[fetchedPOI valueForKey:@"hasCategory"]valueForKey:@"colour"];
     
     
     NSNumber *longNMN = (NSNumber *)[fetchedPOI valueForKey:@"longitude"];

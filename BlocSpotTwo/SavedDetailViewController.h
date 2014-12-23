@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) IBOutlet UIButton *phoneButton;
 
+@property (nonatomic, strong) IBOutlet UIView *categoryBackground;
+
 @property (nonatomic, strong) NSString *passedName;
 @property (nonatomic, strong) NSURL *urlForObjectID;
 

@@ -381,7 +381,7 @@
                                         </variation>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.86939709595959602" green="0.86939709595959602" blue="0.86939709595959602" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.84039614898989901" green="0.84039614898989901" blue="0.84039614898989901" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="g0d-f8-oGk" secondAttribute="trailing" constant="20" id="2mX-gG-H9P"/>
                                     <constraint firstAttribute="height" constant="300" id="3l1-1G-BhD"/>
@@ -453,6 +453,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="categoryBackground" destination="Xdy-vf-Rsx" id="FpP-9r-hVI"/>
                         <outlet property="detailMapView" destination="wJw-4c-rlC" id="rnm-AJ-OBi"/>
                         <outlet property="phoneButton" destination="4aD-4m-7T1" id="GZ6-6X-cqr"/>
                         <outlet property="titleTextLabel" destination="d9K-tv-KHH" id="oKH-ce-wXJ"/>
@@ -887,8 +888,9 @@
                                     </mapView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hi-TL-9BN">
                                         <rect key="frame" x="24" y="258" width="72" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                         <state key="normal" title="Navigate">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufh-ZY-UlC">
@@ -898,6 +900,7 @@
                                             <constraint firstAttribute="width" constant="44" id="ssT-Iq-ItJ"/>
                                         </constraints>
                                         <state key="normal" title="Share">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <variation key="default">
@@ -907,33 +910,38 @@
                                             </mask>
                                         </variation>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwt-e4-Qu7">
-                                        <rect key="frame" x="279" y="267" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwt-e4-Qu7">
+                                        <rect key="frame" x="265" y="262" width="70" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.86939709600000004" green="0.86939709600000004" blue="0.86939709600000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Wwt-e4-Qu7" firstAttribute="centerX" secondItem="m6t-0f-p4R" secondAttribute="centerX" constant="-0.5" id="85U-3O-af8"/>
                                     <constraint firstItem="4hi-TL-9BN" firstAttribute="top" secondItem="m6t-0f-p4R" secondAttribute="bottom" constant="10" id="87T-VM-hgv"/>
                                     <constraint firstItem="4hi-TL-9BN" firstAttribute="leading" secondItem="eqZ-Oa-eFE" secondAttribute="leading" constant="20" id="C0s-Ml-TlW"/>
                                     <constraint firstAttribute="height" constant="300" id="ERj-YP-6Pn"/>
+                                    <constraint firstItem="m6t-0f-p4R" firstAttribute="centerX" secondItem="Wwt-e4-Qu7" secondAttribute="centerX" constant="0.5" id="MwV-8q-s5S"/>
                                     <constraint firstAttribute="trailing" secondItem="m6t-0f-p4R" secondAttribute="trailing" constant="10" id="PTq-sC-yi4"/>
                                     <constraint firstItem="Ufh-ZY-UlC" firstAttribute="top" secondItem="m6t-0f-p4R" secondAttribute="bottom" constant="10" id="Srw-1v-tvw"/>
                                     <constraint firstItem="m6t-0f-p4R" firstAttribute="top" secondItem="eqZ-Oa-eFE" secondAttribute="top" constant="10" id="TIJ-Dr-Nad"/>
+                                    <constraint firstItem="Wwt-e4-Qu7" firstAttribute="top" secondItem="eqZ-Oa-eFE" secondAttribute="top" constant="262" id="UQY-oc-GMB"/>
                                     <constraint firstItem="Wwt-e4-Qu7" firstAttribute="top" secondItem="eqZ-Oa-eFE" secondAttribute="top" constant="267" id="XYW-08-zba"/>
                                     <constraint firstAttribute="bottom" secondItem="4hi-TL-9BN" secondAttribute="bottom" constant="10" id="cDW-m9-bWb"/>
                                     <constraint firstItem="m6t-0f-p4R" firstAttribute="leading" secondItem="eqZ-Oa-eFE" secondAttribute="leading" constant="10" id="dbT-E5-94z"/>
                                     <constraint firstItem="Wwt-e4-Qu7" firstAttribute="top" secondItem="eqZ-Oa-eFE" secondAttribute="top" constant="267" id="hDE-ib-rHk"/>
                                     <constraint firstAttribute="bottom" secondItem="Ufh-ZY-UlC" secondAttribute="bottom" constant="10" id="ixR-X7-LB1"/>
+                                    <constraint firstItem="Wwt-e4-Qu7" firstAttribute="top" secondItem="eqZ-Oa-eFE" secondAttribute="top" constant="267" id="p5C-aU-c2L"/>
                                     <constraint firstAttribute="centerY" secondItem="Wwt-e4-Qu7" secondAttribute="centerY" constant="-128" id="r1G-Bi-0j9"/>
                                     <constraint firstAttribute="trailing" secondItem="Ufh-ZY-UlC" secondAttribute="trailing" constant="20" id="vyT-II-x2S"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="85U-3O-af8"/>
                                         <exclude reference="XYW-08-zba"/>
+                                        <exclude reference="hDE-ib-rHk"/>
+                                        <exclude reference="p5C-aU-c2L"/>
                                         <exclude reference="r1G-Bi-0j9"/>
                                     </mask>
                                 </variation>
@@ -1009,6 +1017,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="Title" destination="dHZ-v8-1ce" id="xif-Fp-KvN"/>
+                        <outlet property="categoryBackground" destination="eqZ-Oa-eFE" id="j8O-Fu-1o2"/>
                         <outlet property="categoryLabel" destination="Wwt-e4-Qu7" id="lb2-h9-NF8"/>
                         <outlet property="descriptionText" destination="blm-cW-xlD" id="hDf-rr-Bdg"/>
                         <outlet property="descriptionTextLabel" destination="blm-cW-xlD" id="p0A-oX-x2r"/>
@@ -1019,7 +1028,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AjM-He-Kjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4178" y="1189"/>
+            <point key="canvasLocation" x="4150" y="1189"/>
         </scene>
         <!--Date added-->
         <scene sceneID="bSE-IJ-b1b">
@@ -1430,10 +1439,10 @@
         <image name="mapbutton" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HJG-7T-iCW"/>
-        <segue reference="Oqs-Ze-I15"/>
         <segue reference="QoY-Zm-fbt"/>
         <segue reference="qlJ-lS-oTF"/>
         <segue reference="ShH-nh-vZ7"/>
+        <segue reference="qLy-ZG-540"/>
+        <segue reference="Oqs-Ze-I15"/>
     </inferredMetricsTieBreakers>
 </document>
