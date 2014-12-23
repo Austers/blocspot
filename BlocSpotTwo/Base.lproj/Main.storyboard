@@ -252,6 +252,7 @@
                         <segue destination="SjP-1A-E7L" kind="relationship" relationship="viewControllers" id="TbI-IC-dcV"/>
                         <segue destination="7PD-Nw-5W6" kind="relationship" relationship="viewControllers" id="Kj4-yU-2lc"/>
                         <segue destination="ahM-20-iis" kind="relationship" relationship="viewControllers" id="Tev-Gk-aYD"/>
+                        <segue destination="Kyp-Wc-6cm" kind="show" identifier="segueToMap" id="yAf-eo-jA6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5b-2L-NGr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -284,48 +285,19 @@
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedCell" textLabel="Rah-DS-WHw" detailTextLabel="NyA-Ga-mhk" style="IBUITableViewCellStyleValue1" id="SUm-ih-DAO">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedCell" rowHeight="44" id="SUm-ih-DAO">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SUm-ih-DAO" id="tQR-TP-OQx">
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rah-DS-WHw">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NyA-Ga-mhk">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.34895674850000002" green="0.46984452370000002" blue="1" alpha="0.38" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="VaG-C8-SsB" kind="show" identifier="savedDetailView" id="qlJ-lS-oTF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" textLabel="nrx-xX-hoI" detailTextLabel="UYa-n0-MXd" style="IBUITableViewCellStyleValue1" id="mDS-Tw-crH">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" id="mDS-Tw-crH">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mDS-Tw-crH" id="zIv-IE-4xW">
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nrx-xX-hoI">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UYa-n0-MXd">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="jV2-Pr-wR0" kind="show" identifier="detailView" id="pLB-Ta-VVP"/>
@@ -1458,10 +1430,10 @@
         <image name="mapbutton" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QoY-Zm-fbt"/>
-        <segue reference="91G-qo-uOb"/>
         <segue reference="HJG-7T-iCW"/>
         <segue reference="Oqs-Ze-I15"/>
+        <segue reference="QoY-Zm-fbt"/>
+        <segue reference="qlJ-lS-oTF"/>
         <segue reference="ShH-nh-vZ7"/>
     </inferredMetricsTieBreakers>
 </document>

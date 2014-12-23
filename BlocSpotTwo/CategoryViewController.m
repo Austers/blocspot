@@ -102,7 +102,8 @@ Code to work on to populate picker on first load.....
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Category"];    fetchRequest.propertiesToFetch = @[@"name", @"colour"];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Category"];
+    fetchRequest.propertiesToFetch = @[@"name", @"colour"];
     
 
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]]];
@@ -141,6 +142,7 @@ Code to work on to populate picker on first load.....
     NSManagedObject *category = [[[self fetchedResultsController]fetchedObjects]objectAtIndex:row];
     
     NSString *title = (NSString *)[category valueForKey:@"name"];
+    
     UIColor *textColour = (UIColor *)[category valueForKey:@"colour"];
     
     NSAttributedString *attString = [[NSAttributedString alloc]initWithString:title attributes:@{NSForegroundColorAttributeName:textColour}];

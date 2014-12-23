@@ -11,10 +11,14 @@
 @interface SaveNewCategoryViewController : UIViewController
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 @property (weak, nonatomic) IBOutlet UITextField *categoryText;
+@property (nonatomic, strong) NSString *passedText;
 
 @property (nonatomic, strong) IBOutlet UIButton *colourButton;
 
 @property (nonatomic, strong) UIColor *buttonColour;
+
+
 
 @end

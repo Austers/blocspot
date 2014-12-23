@@ -42,6 +42,8 @@
         self.colourButton.backgroundColor = self.buttonColour;
     }
     
+    self.categoryText.text = self.passedText;
+    
 }
 
 -(void) cancel:(id)sender
@@ -61,10 +63,7 @@
         
         [record setValue:newCategory forKey:@"name"];
         [record setValue:[NSDate date] forKey:@"createdAt"];
-        
-        NSData *colourData = [NSKeyedArchiver archivedDataWithRootObject:self.buttonColour];
-        
-        [record setValue:colourData forKey:@"colour"];
+        [record setValue:self.buttonColour forKey:@"colour"];
     
         
         
@@ -105,6 +104,7 @@
   
     ColourSelectViewController *colourSelectVC = (ColourSelectViewController *)[segue destinationViewController];
     colourSelectVC.managedObjectContext = self.managedObjectContext;
+    colourSelectVC.categoryNameTemp = self.categoryText.text;
     
 }
 

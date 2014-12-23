@@ -106,6 +106,7 @@
     NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     [cell.pointOfInterestLabel setText:[record valueForKey:@"name"]];
+    cell.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

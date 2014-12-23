@@ -39,6 +39,32 @@
     
     self.title = @"Search";
     
+    [self populateSavedLocations];
+    
+}
+
+
+-(void)populateSavedLocations
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"PointOfInterest"];
+    
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"dateSaved" ascending:YES]]];
+    
+    [fetchRequest setFetchLimit:3];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    [self.fetchedResultsController setDelegate:self];
+    
+    NSError *error = nil;
+    
+    [self.fetchedResultsController performFetch:&error];
+    
+    if (error) {
+        NSLog(@"Unable to perform fetch");
+        NSLog(@"%@, %@", error, error.localizedDescription);
+    }
+
 }
 
 
@@ -75,7 +101,8 @@
         
         return [sectionInfo numberOfObjects];
     }
-    else{
+    else
+    {
         return self.resultDictionaries.count;;
     }
 }
@@ -90,6 +117,7 @@
         NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
         [cell.textLabel setText:[record valueForKey:@"name"]];
+        cell.backgroundColor = cell.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
         cell.detailTextLabel.text = @"";
         
         return cell;
@@ -104,7 +132,6 @@
         
         return cell;
     }
-   
 }
 
 
@@ -140,9 +167,11 @@
         
         NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        NSLog(@"%@", [record valueForKey:@"name"]);
+        NSManagedObjectID *recordID = [record objectID];
         
-        savedVC.passedName = [record valueForKey:@"name"];
+        NSURL *url = [recordID URIRepresentation];
+        
+        savedVC.urlForObjectID = url;
         
     }
 }
@@ -255,10 +284,9 @@
     self.searchResultDistances = distanceArray;
 }
 
+
 -(void)fetchPOI
 {
-    
-    
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"PointOfInterest" inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
@@ -281,31 +309,15 @@
         NSLog(@"%@, %@", error, error.localizedDescription);
     }
     
-   // NSManagedObject *fetchedPOI = [[self.fetchedResultsController fetchedObjects]objectAtIndex:0];
+    // If fetch returns nothing then populate with last three saved POI
     
-   // self.name = (NSString *)[fetchedPOI valueForKey:@"name"];
-    // self.url = (NSString *)[fetchedPOI valueForKey:@"url"];
-    // self.phone = (NSString *)[fetchedPOI valueForKey:@"phone"];
-    // self.descriptionText = (NSString *)[fetchedPOI valueForKey:@"customDescription"];
-    
-    
-  //  NSNumber *longNMN = (NSNumber *)[fetchedPOI valueForKey:@"longitude"];
-  //  self.longitude = [longNMN doubleValue];
-   // NSNumber *latNSN = (NSNumber *)[fetchedPOI valueForKey:@"latitude"];
-   // self.latitude = [latNSN doubleValue];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[_fetchedResultsController sections] objectAtIndex:0];
+    if([sectionInfo numberOfObjects] == 0)
+    {
+        [self populateSavedLocations];
+    }
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

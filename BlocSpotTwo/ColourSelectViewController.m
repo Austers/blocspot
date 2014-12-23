@@ -76,6 +76,8 @@
     SaveNewCategoryViewController *saveCategoryVC = (SaveNewCategoryViewController *)[segue destinationViewController];
     saveCategoryVC.managedObjectContext = self.managedObjectContext;
     
+    saveCategoryVC.passedText = self.categoryNameTemp;
+    
     saveCategoryVC.buttonColour = [self.colourArray objectAtIndex:colourRow];
     
  }

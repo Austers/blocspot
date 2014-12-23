@@ -13,5 +13,6 @@
 @property (nonatomic, strong) IBOutlet UICollectionView *colourCollectionView;
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSString *categoryNameTemp;
 
 @end

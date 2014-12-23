@@ -70,12 +70,68 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    NSArray *dataTest = [self testForData];
+    
+    if ([dataTest count] == 0) {
+        [self populateData];
+        NSLog(@"%@", dataTest);
+        
+    }
+    
+    
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     MapViewController *mapVC = (MapViewController *)navigationController.topViewController;
     mapVC.managedObjectContext = self.managedObjectContext;
     
        return YES;
 }
+
+
+-(NSArray *)testForData
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    
+    [request setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]]];
+
+    NSArray *fetchedResults = [self.managedObjectContext executeFetchRequest:request error:nil];
+    
+    return fetchedResults;
+}
+
+
+-(void)populateData
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+    NSManagedObject *record = [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    
+    [record setValue:@"Restaurant" forKey:@"name"];
+    [record setValue:[NSDate date] forKey:@"createdAt"];
+    
+    UIColor *presetOne = [UIColor redColor];
+    
+    [record setValue:presetOne forKey:@"colour"];
+    
+    NSError *error = nil;
+    
+    if ([self.managedObjectContext save:&error]) {
+        
+        NSLog(@"Saved successfully");
+        
+    } else
+    {
+        if (error) {
+            
+            NSLog(@"Unable to save record.");
+            NSLog(@"%@, %@", error, error.localizedDescription);
+        }
+        
+    }
+
+}
+
 
 
 -(void)saveManagedObjectContext
