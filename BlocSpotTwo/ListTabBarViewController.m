@@ -51,6 +51,12 @@
 }
 
 
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    if (item.tag ==1) {
+        NSLog(@"button pressed");
+        }
+}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

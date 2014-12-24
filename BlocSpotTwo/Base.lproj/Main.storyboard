@@ -1196,40 +1196,31 @@
                                     <outlet property="delegate" destination="ahM-20-iis" id="sJh-TO-raz"/>
                                 </connections>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hvM-QA-ahr" userLabel="Custom Table View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXy-5B-8ZH">
                                 <rect key="frame" x="480" y="286" width="120" height="240"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="7XH-gT-aYP"/>
-                                    <constraint firstAttribute="width" constant="120" id="raP-wg-V8U"/>
+                                    <constraint firstAttribute="height" constant="240" id="dGg-mm-6eU"/>
+                                    <constraint firstAttribute="width" constant="120" id="ee0-RS-F7R"/>
                                 </constraints>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCategoryCell" id="nTr-nq-paH">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nTr-nq-paH" id="bxZ-6v-xFH">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kgZ-m0-M2p" firstAttribute="top" secondItem="WK1-NI-ASR" secondAttribute="bottom" id="42q-4K-kHc"/>
                             <constraint firstAttribute="trailing" secondItem="WK1-NI-ASR" secondAttribute="trailing" id="7Kw-a7-tBr"/>
                             <constraint firstItem="WK1-NI-ASR" firstAttribute="top" secondItem="GdZ-w8-2qW" secondAttribute="bottom" id="87K-cX-mNN"/>
+                            <constraint firstItem="kgZ-m0-M2p" firstAttribute="top" secondItem="jXy-5B-8ZH" secondAttribute="bottom" id="Bzq-oK-VgD"/>
                             <constraint firstItem="kgZ-m0-M2p" firstAttribute="top" secondItem="WK1-NI-ASR" secondAttribute="bottom" id="H9K-ye-cF6"/>
                             <constraint firstItem="WK1-NI-ASR" firstAttribute="leading" secondItem="fTy-7d-3HS" secondAttribute="leading" id="Jnu-0W-o46"/>
                             <constraint firstAttribute="bottom" secondItem="WK1-NI-ASR" secondAttribute="bottom" id="O0n-x2-Clh"/>
                             <constraint firstAttribute="trailing" secondItem="WK1-NI-ASR" secondAttribute="trailing" id="Uzq-V8-E0f"/>
-                            <constraint firstItem="kgZ-m0-M2p" firstAttribute="top" secondItem="hvM-QA-ahr" secondAttribute="bottom" id="YNg-Ok-e3l"/>
                             <constraint firstItem="WK1-NI-ASR" firstAttribute="leading" secondItem="fTy-7d-3HS" secondAttribute="leading" id="Yaw-6T-WUa"/>
                             <constraint firstItem="kgZ-m0-M2p" firstAttribute="leading" secondItem="fTy-7d-3HS" secondAttribute="leading" id="b7U-IE-qD6"/>
+                            <constraint firstAttribute="trailing" secondItem="jXy-5B-8ZH" secondAttribute="trailing" id="gGm-zx-YAw"/>
                             <constraint firstItem="WK1-NI-ASR" firstAttribute="top" secondItem="GdZ-w8-2qW" secondAttribute="bottom" id="j52-pf-hbC"/>
                             <constraint firstAttribute="trailing" secondItem="kgZ-m0-M2p" secondAttribute="trailing" id="mOx-x7-yza"/>
                             <constraint firstItem="kgZ-m0-M2p" firstAttribute="top" secondItem="WK1-NI-ASR" secondAttribute="bottom" id="n1o-QD-2bh"/>
                             <constraint firstItem="bdb-5r-Jwd" firstAttribute="top" secondItem="kgZ-m0-M2p" secondAttribute="bottom" id="od8-aS-CL5"/>
-                            <constraint firstAttribute="trailing" secondItem="hvM-QA-ahr" secondAttribute="trailing" id="pSb-tW-3oU"/>
                             <constraint firstItem="kgZ-m0-M2p" firstAttribute="top" secondItem="WK1-NI-ASR" secondAttribute="bottom" id="r8t-dr-QjP"/>
                             <constraint firstAttribute="trailing" secondItem="WK1-NI-ASR" secondAttribute="trailing" id="rqS-DY-pHT"/>
                             <constraint firstItem="WK1-NI-ASR" firstAttribute="leading" secondItem="fTy-7d-3HS" secondAttribute="leading" id="xoH-9V-gPI"/>
@@ -1250,7 +1241,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Category" image="categorybutton" id="FNh-Y5-ZSK"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Category" image="categorybutton" id="FNh-Y5-ZSK"/>
                     <navigationItem key="navigationItem" id="8ng-ZO-tiQ">
                         <barButtonItem key="leftBarButtonItem" image="mapbutton" id="4Iu-V2-lSL"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="uvd-nV-NaI"/>
@@ -1258,7 +1249,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="categoryTableview" destination="hvM-QA-ahr" id="vVQ-dz-ZKY"/>
+                        <outlet property="categoryView" destination="jXy-5B-8ZH" id="Kcv-Di-oNe"/>
                         <outlet property="mainTableview" destination="WK1-NI-ASR" id="BQY-Mx-FSu"/>
                     </connections>
                 </viewController>
@@ -1459,7 +1450,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qLy-ZG-540"/>
-        <segue reference="ShH-nh-vZ7"/>
+        <segue reference="LNQ-Gd-8ag"/>
         <segue reference="QoY-Zm-fbt"/>
         <segue reference="Z7V-hA-yuJ"/>
         <segue reference="Oqs-Ze-I15"/>

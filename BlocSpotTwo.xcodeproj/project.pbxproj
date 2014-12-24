@@ -14,7 +14,6 @@
 		133960CE1A4AA9B60051588A /* CustomCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 133960CD1A4AA9B60051588A /* CustomCategoryView.m */; };
 		133960D61A4ABFF90051588A /* CustomCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 133960D51A4ABFF90051588A /* CustomCategoryTVC.m */; };
 		133960DD1A4AD1940051588A /* CustomCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133960DC1A4AD1940051588A /* CustomCategoryCell.xib */; };
-		133960E11A4AEBF60051588A /* CustomCategoryTableview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133960E01A4AEBF60051588A /* CustomCategoryTableview.xib */; };
 		133960EA1A4B05590051588A /* CustomCategoryTVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133960E91A4B05590051588A /* CustomCategoryTVController.m */; };
 		1344F08B1A409A63002BB242 /* CustomCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1344F08A1A409A63002BB242 /* CustomCategoryView.xib */; };
 		13561B761A27D81100C72FEA /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 13561B751A27D81100C72FEA /* CustomAnnotation.m */; };
@@ -70,7 +69,6 @@
 		133960D41A4ABFF90051588A /* CustomCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCategoryTVC.h; path = BlocSpotTwo/CustomCategoryTVC.h; sourceTree = "<group>"; };
 		133960D51A4ABFF90051588A /* CustomCategoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCategoryTVC.m; path = BlocSpotTwo/CustomCategoryTVC.m; sourceTree = "<group>"; };
 		133960DC1A4AD1940051588A /* CustomCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCategoryCell.xib; path = BlocSpotTwo/CustomCategoryCell.xib; sourceTree = "<group>"; };
-		133960E01A4AEBF60051588A /* CustomCategoryTableview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCategoryTableview.xib; path = BlocSpotTwo/CustomCategoryTableview.xib; sourceTree = "<group>"; };
 		133960E81A4B05590051588A /* CustomCategoryTVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCategoryTVController.h; path = BlocSpotTwo/CustomCategoryTVController.h; sourceTree = "<group>"; };
 		133960E91A4B05590051588A /* CustomCategoryTVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCategoryTVController.m; path = BlocSpotTwo/CustomCategoryTVController.m; sourceTree = "<group>"; };
 		1344F08A1A409A63002BB242 /* CustomCategoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCategoryView.xib; path = BlocSpotTwo/CustomCategoryView.xib; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				133960D41A4ABFF90051588A /* CustomCategoryTVC.h */,
 				133960D51A4ABFF90051588A /* CustomCategoryTVC.m */,
 				1344F08A1A409A63002BB242 /* CustomCategoryView.xib */,
-				133960E01A4AEBF60051588A /* CustomCategoryTableview.xib */,
 				133960DC1A4AD1940051588A /* CustomCategoryCell.xib */,
 			);
 			name = "Custom Tab Bar";
@@ -395,7 +392,6 @@
 			files = (
 				1344F08B1A409A63002BB242 /* CustomCategoryView.xib in Resources */,
 				133960DD1A4AD1940051588A /* CustomCategoryCell.xib in Resources */,
-				133960E11A4AEBF60051588A /* CustomCategoryTableview.xib in Resources */,
 				136663411A10A709003D9F49 /* Main.storyboard in Resources */,
 				136663461A10A709003D9F49 /* LaunchScreen.xib in Resources */,
 				136663431A10A709003D9F49 /* Images.xcassets in Resources */,

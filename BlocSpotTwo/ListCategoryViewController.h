@@ -11,11 +11,13 @@
 
 @interface ListCategoryViewController : UIViewController
 
-@property (nonatomic, strong) CustomCategoryTVController *categorySelector;
+@property (nonatomic, strong) CustomCategoryTVController *customVC;
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, weak) IBOutlet UITableView *mainTableview;
-@property (nonatomic, weak) IBOutlet UITableView *categoryTableview;
+//@property (nonatomic, weak) IBOutlet UITableView *popupTableview;
+
+@property (nonatomic, strong) IBOutlet UIView *categoryView;
 
 @end

@@ -10,14 +10,9 @@
 
 #import <CoreData/CoreData.h>
 
-@interface CustomCategoryView : UIView <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
-
-@property (strong, nonatomic) IBOutlet UIView *view;
+@interface CustomCategoryView : UIView
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) IBOutlet UIView *view;
 
 @end

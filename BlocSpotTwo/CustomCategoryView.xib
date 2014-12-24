@@ -6,29 +6,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomCategoryView">
             <connections>
-                <outlet property="tableView" destination="Tkz-Fq-oUp" id="ytD-1I-KIk"/>
-                <outlet property="view" destination="L8A-u3-GE4" id="EPg-oY-uzp"/>
+                <outlet property="tableView" destination="StI-kv-Kek" id="7It-6X-aNl"/>
+                <outlet property="view" destination="syA-Wp-0gY" id="yLf-Df-CXt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="L8A-u3-GE4">
-            <rect key="frame" x="0.0" y="0.0" width="120" height="239"/>
+        <view contentMode="scaleToFill" id="syA-Wp-0gY">
+            <rect key="frame" x="0.0" y="0.0" width="120" height="240"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tkz-Fq-oUp">
-                    <rect key="frame" x="0.0" y="0.0" width="120" height="239"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="StI-kv-Kek">
+                    <rect key="frame" x="0.0" y="0.0" width="120" height="240"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="separatorColor" red="0.78215751259999999" green="0.1145077915" blue="0.082832285850000006" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="V4e-1Z-E3K"/>
-                        <outlet property="delegate" destination="-1" id="eaz-xB-A2U"/>
-                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="StI-kv-Kek" firstAttribute="top" secondItem="syA-Wp-0gY" secondAttribute="top" id="9Ji-64-QFG"/>
+                <constraint firstAttribute="trailing" secondItem="StI-kv-Kek" secondAttribute="trailing" id="cgj-UW-4qS"/>
+                <constraint firstItem="StI-kv-Kek" firstAttribute="leading" secondItem="syA-Wp-0gY" secondAttribute="leading" id="lKB-r1-5cO"/>
+                <constraint firstAttribute="bottom" secondItem="StI-kv-Kek" secondAttribute="bottom" id="rbv-5D-jmY"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-39" y="372.5"/>
+            <point key="canvasLocation" x="-567" y="90"/>
         </view>
     </objects>
 </document>

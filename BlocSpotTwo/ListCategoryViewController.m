@@ -26,7 +26,6 @@
 
 @implementation ListCategoryViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -50,16 +49,12 @@
         NSLog(@"%@, %@", error, error.localizedDescription);
     }
     
-    if (self.categorySelector == nil) {
-
-    self.categorySelector = [[CustomCategoryTVController alloc]init];
-    
-        [self.categoryTableview setDataSource:self.categorySelector];
-    [self.categoryTableview setDelegate:self.categorySelector];
-        
-        self.categorySelector.view = self.categorySelector.tableView;
+    if (self.customVC == nil) {
+        self.customVC = [[CustomCategoryTVController alloc] init];
     }
-        
+    
+    //Need to apply to delegate and datasource of custom UITableView to the Custom View Controller
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -134,6 +129,8 @@
     self.categoryLabel.font = [UIFont systemFontOfSize:24];
     
     cell.accessoryView = self.categoryLabel;
+     
+
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
 }
