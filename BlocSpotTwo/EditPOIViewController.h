@@ -19,7 +19,11 @@
 @property (nonatomic, strong) IBOutlet UIButton *saveButton;
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSURL *urlForObjectID;
 
 // @property (strong, nonatomic) IBOutlet UITextField *categoryTextField;
+
+@property (nonatomic, strong) NSString *detailText;
+@property (nonatomic, strong) NSString *name;
 
 @end

@@ -1023,6 +1023,7 @@
                         <outlet property="phoneButton" destination="MVE-oH-Nqm" id="vRv-Ws-dHw"/>
                         <outlet property="urlButton" destination="M41-tE-JBD" id="pvx-dY-XPw"/>
                         <segue destination="yHx-xa-aGQ" kind="show" identifier="showTabVC" id="QoY-Zm-fbt"/>
+                        <segue destination="c2B-mO-zH4" kind="show" identifier="showEditView" id="ngM-Ko-3Gy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AjM-He-Kjp" userLabel="First Responder" sceneMemberID="firstResponder"/>

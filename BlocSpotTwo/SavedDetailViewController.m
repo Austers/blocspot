@@ -11,6 +11,7 @@
 #import <CoreData/CoreData.h>
 
 #import "ListTabBarViewController.h"
+#import "EditPOIViewController.h"
 
 @interface SavedDetailViewController () <NSFetchedResultsControllerDelegate>
 
@@ -92,7 +93,7 @@
 
 -(void)editButtonPressed:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"showEditView" sender:self];
 }
 
 -(void)listButtonPressed:(id)sender
@@ -165,9 +166,13 @@
     {
         ListTabBarViewController * tabVC = (ListTabBarViewController*)[segue destinationViewController];
         tabVC.managedObjectContext = self.managedObjectContext;
-    } else if ([segue.identifier isEqualToString:@"showEditVC"])
+    } else if ([segue.identifier isEqualToString:@"showEditView"])
     {
-        
+        EditPOIViewController *editVC = (EditPOIViewController *)[segue destinationViewController];
+        editVC.managedObjectContext = self.managedObjectContext;
+        editVC.urlForObjectID = self.urlForObjectID;
+        editVC.detailText = self.descriptionText;
+        editVC.name = self.name;
     }
     
 }

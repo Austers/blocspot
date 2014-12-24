@@ -20,15 +20,6 @@
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
-// properties to be stored to CoreData
-
-@property (nonatomic, strong) NSString *detailText;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *phone;
-@property (nonatomic, strong) NSString *url;
-@property (nonatomic, strong) NSDate *date;
-@property (nonatomic, assign) double latitude;
-@property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSDate *dateCreated;
 
 @end
@@ -39,9 +30,10 @@
     [super viewDidLoad];
     
     self.title = @"Edit details";
+    self.detailTextField.text= self.detailText;
     
-    [self extractDictionaryValues];
-    }
+    [self fetchPOIData];
+}
 
 
 -(void)viewDidAppear:(BOOL)animated
@@ -67,6 +59,18 @@
     [self.picker reloadAllComponents];
     
 }
+
+-(void)fetchPOIData
+{
+    NSManagedObjectID *recordID = [[self.managedObjectContext persistentStoreCoordinator] managedObjectIDForURIRepresentation:self.urlForObjectID];
+    NSManagedObject *record = [self.managedObjectContext objectWithID:recordID];
+    
+    self.name = (NSString *)[record valueForKey:@"name"];
+    self.detailText = (NSString *)[record valueForKey:@"customDescription"];
+    
+    
+}
+
 
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -99,7 +103,7 @@
     
     NSLog(@"%@, %@", self.categorySelection, self.receivedDictionaryFromDetailView);
     
-    [self changePOIData];
+   // [self changePOIData];
     
 }
 
@@ -117,7 +121,7 @@
     self.detailText = self.detailTextField.text;
     return YES;
 }
-
+/*
 -(void)changePOIData
 {
     
@@ -166,37 +170,12 @@
         [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Please enter a description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
     }
 }
-
+*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-
--(void)extractDictionaryValues
-{
-    self.name = self.receivedDictionaryFromDetailView [@"Title"];
-    self.phone = self.receivedDictionaryFromDetailView [@"Phone"];
-    self.url = self.receivedDictionaryFromDetailView [@"URLString"];
-    
-    NSNumber *receivedLatitude = self.receivedDictionaryFromDetailView [@"Latitude"];
-    self.latitude = [receivedLatitude doubleValue];
-    NSNumber *receivedLongitude = self.receivedDictionaryFromDetailView [@"Longitude"];
-    self.longitude = [receivedLongitude doubleValue];
-}
-
-
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
