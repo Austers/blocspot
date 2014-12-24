@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomCategoryTVController.h"
 
 @interface ListCategoryViewController : UIViewController
 
+@property (nonatomic, strong) CustomCategoryTVController *categorySelector;
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *mainTableview;
+@property (nonatomic, weak) IBOutlet UITableView *categoryTableview;
 
 @end

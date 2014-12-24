@@ -10,6 +10,8 @@
 #import "ListTabBarViewController.h"
 #import "ListCategoryPOITVC.h"
 #import "SavedDetailViewController.h"
+#import "CustomCategoryView.h"
+#import "CustomCategoryTVC.h"
 
 #import <CoreData/CoreData.h>
 
@@ -23,6 +25,7 @@
 @end
 
 @implementation ListCategoryViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,6 +49,17 @@
         NSLog(@"Unable to perform fetch");
         NSLog(@"%@, %@", error, error.localizedDescription);
     }
+    
+    if (self.categorySelector == nil) {
+
+    self.categorySelector = [[CustomCategoryTVController alloc]init];
+    
+        [self.categoryTableview setDataSource:self.categorySelector];
+    [self.categoryTableview setDelegate:self.categorySelector];
+        
+        self.categorySelector.view = self.categorySelector.tableView;
+    }
+        
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,19 +69,19 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections]count];
+        return [[self.fetchedResultsController sections]count];
 }
 
 
 -(void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView beginUpdates];
+    [self.mainTableview beginUpdates];
 }
 
 
 -(void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView endUpdates];
+    [self.mainTableview endUpdates];
 }
 
 
@@ -75,20 +89,20 @@
 {
     switch (type) {
         case NSFetchedResultsChangeInsert: {
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.mainTableview insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
         case NSFetchedResultsChangeDelete: {
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.mainTableview deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
         case NSFetchedResultsChangeUpdate: {
-            [self configureCell:(ListCategoryPOITVC *)[self.tableView cellForRowAtIndexPath:indexPath]atIndexPath:indexPath];
+            [self configureCell:(ListCategoryPOITVC *)[self.mainTableview cellForRowAtIndexPath:indexPath]atIndexPath:indexPath];
             break;
         }
         case NSFetchedResultsChangeMove: {
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.mainTableview deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.mainTableview insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
     }
@@ -96,10 +110,10 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *sections = [self.fetchedResultsController sections];
-    id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
-    
-    return [sectionInfo numberOfObjects];
+        NSArray *sections = [self.fetchedResultsController sections];
+        id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
+        
+        return [sectionInfo numberOfObjects];
 }
 
 -(void)configureCell:(ListCategoryPOITVC *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -112,14 +126,12 @@
     NSString *categoryLetter = [categoryName substringToIndex:1];
     categoryLetter = [categoryLetter uppercaseString];
     
-    
     self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     self.categoryLabel.text = categoryLetter;
     self.categoryLabel.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
     self.categoryLabel.textColor = [UIColor whiteColor];
     self.categoryLabel.textAlignment = NSTextAlignmentCenter;
     self.categoryLabel.font = [UIFont systemFontOfSize:24];
-    
     
     cell.accessoryView = self.categoryLabel;
     cell.contentView.backgroundColor = [UIColor whiteColor];
@@ -132,25 +144,26 @@
     
 }
 
-
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        if (record) {
-            [self.fetchedResultsController.managedObjectContext deleteObject:record];
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            
+            if (record) {
+                [self.fetchedResultsController.managedObjectContext deleteObject:record];
+            }
         }
-    }
 }
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ListCategoryPOITVC *cell = (ListCategoryPOITVC *)[tableView dequeueReusableCellWithIdentifier:@"listCategoryCell" forIndexPath:indexPath];
     
-    [self configureCell:cell atIndexPath:indexPath];
-    
-    return cell;
+        ListCategoryPOITVC *cell = (ListCategoryPOITVC *)[tableView dequeueReusableCellWithIdentifier:@"listCategoryCell" forIndexPath:indexPath];
+        
+        [self configureCell:cell atIndexPath:indexPath];
+        
+        return cell;
 }
 
 
@@ -162,7 +175,7 @@
         SavedDetailViewController *savedVC = segue.destinationViewController;
         savedVC.managedObjectContext = self.managedObjectContext;
         
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [self.mainTableview indexPathForSelectedRow];
         
         NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
         

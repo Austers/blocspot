@@ -11,7 +11,12 @@
 		131D09D31A44759500233878 /* ListAZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 131D09D21A44759500233878 /* ListAZViewController.m */; };
 		131D09D61A447D8B00233878 /* ListAZPOITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 131D09D51A447D8B00233878 /* ListAZPOITVC.m */; };
 		131D09D91A470E1D00233878 /* EditPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 131D09D81A470E1D00233878 /* EditPOIViewController.m */; };
-		1344F08B1A409A63002BB242 /* Viewtest.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1344F08A1A409A63002BB242 /* Viewtest.xib */; };
+		133960CE1A4AA9B60051588A /* CustomCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 133960CD1A4AA9B60051588A /* CustomCategoryView.m */; };
+		133960D61A4ABFF90051588A /* CustomCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 133960D51A4ABFF90051588A /* CustomCategoryTVC.m */; };
+		133960DD1A4AD1940051588A /* CustomCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133960DC1A4AD1940051588A /* CustomCategoryCell.xib */; };
+		133960E11A4AEBF60051588A /* CustomCategoryTableview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133960E01A4AEBF60051588A /* CustomCategoryTableview.xib */; };
+		133960EA1A4B05590051588A /* CustomCategoryTVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 133960E91A4B05590051588A /* CustomCategoryTVController.m */; };
+		1344F08B1A409A63002BB242 /* CustomCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1344F08A1A409A63002BB242 /* CustomCategoryView.xib */; };
 		13561B761A27D81100C72FEA /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 13561B751A27D81100C72FEA /* CustomAnnotation.m */; };
 		13561B791A27FAD000C72FEA /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13561B781A27FAD000C72FEA /* DetailViewController.m */; };
 		13561B7C1A2F939900C72FEA /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13561B7B1A2F939900C72FEA /* CategoryViewController.m */; };
@@ -60,7 +65,15 @@
 		131D09D51A447D8B00233878 /* ListAZPOITVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListAZPOITVC.m; path = BlocSpotTwo/ListAZPOITVC.m; sourceTree = "<group>"; };
 		131D09D71A470E1D00233878 /* EditPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditPOIViewController.h; path = BlocSpotTwo/EditPOIViewController.h; sourceTree = "<group>"; };
 		131D09D81A470E1D00233878 /* EditPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPOIViewController.m; path = BlocSpotTwo/EditPOIViewController.m; sourceTree = "<group>"; };
-		1344F08A1A409A63002BB242 /* Viewtest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Viewtest.xib; sourceTree = "<group>"; };
+		133960CC1A4AA9B60051588A /* CustomCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCategoryView.h; path = BlocSpotTwo/CustomCategoryView.h; sourceTree = "<group>"; };
+		133960CD1A4AA9B60051588A /* CustomCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCategoryView.m; path = BlocSpotTwo/CustomCategoryView.m; sourceTree = "<group>"; };
+		133960D41A4ABFF90051588A /* CustomCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCategoryTVC.h; path = BlocSpotTwo/CustomCategoryTVC.h; sourceTree = "<group>"; };
+		133960D51A4ABFF90051588A /* CustomCategoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCategoryTVC.m; path = BlocSpotTwo/CustomCategoryTVC.m; sourceTree = "<group>"; };
+		133960DC1A4AD1940051588A /* CustomCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCategoryCell.xib; path = BlocSpotTwo/CustomCategoryCell.xib; sourceTree = "<group>"; };
+		133960E01A4AEBF60051588A /* CustomCategoryTableview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCategoryTableview.xib; path = BlocSpotTwo/CustomCategoryTableview.xib; sourceTree = "<group>"; };
+		133960E81A4B05590051588A /* CustomCategoryTVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCategoryTVController.h; path = BlocSpotTwo/CustomCategoryTVController.h; sourceTree = "<group>"; };
+		133960E91A4B05590051588A /* CustomCategoryTVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCategoryTVController.m; path = BlocSpotTwo/CustomCategoryTVController.m; sourceTree = "<group>"; };
+		1344F08A1A409A63002BB242 /* CustomCategoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCategoryView.xib; path = BlocSpotTwo/CustomCategoryView.xib; sourceTree = "<group>"; };
 		13561B741A27D81100C72FEA /* CustomAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAnnotation.h; path = BlocSpotTwo/CustomAnnotation.h; sourceTree = "<group>"; };
 		13561B751A27D81100C72FEA /* CustomAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAnnotation.m; path = BlocSpotTwo/CustomAnnotation.m; sourceTree = "<group>"; };
 		13561B771A27FAD000C72FEA /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = BlocSpotTwo/DetailViewController.h; sourceTree = "<group>"; };
@@ -133,6 +146,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		133960CB1A4AA97E0051588A /* Custom Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				133960CC1A4AA9B60051588A /* CustomCategoryView.h */,
+				133960CD1A4AA9B60051588A /* CustomCategoryView.m */,
+				133960E81A4B05590051588A /* CustomCategoryTVController.h */,
+				133960E91A4B05590051588A /* CustomCategoryTVController.m */,
+				133960D41A4ABFF90051588A /* CustomCategoryTVC.h */,
+				133960D51A4ABFF90051588A /* CustomCategoryTVC.m */,
+				1344F08A1A409A63002BB242 /* CustomCategoryView.xib */,
+				133960E01A4AEBF60051588A /* CustomCategoryTableview.xib */,
+				133960DC1A4AD1940051588A /* CustomCategoryCell.xib */,
+			);
+			name = "Custom Tab Bar";
+			sourceTree = "<group>";
+		};
 		136663291A10A709003D9F49 = {
 			isa = PBXGroup;
 			children = (
@@ -167,7 +196,6 @@
 				13D449651A471B2D0072551E /* Point Of Interest Controllers */,
 				13D449641A471AF50072551E /* Map Controllers */,
 				136663351A10A709003D9F49 /* Supporting Files */,
-				1344F08A1A409A63002BB242 /* Viewtest.xib */,
 			);
 			path = BlocSpotTwo;
 			sourceTree = "<group>";
@@ -279,6 +307,7 @@
 				13D449711A4839910072551E /* ListDateAddedViewController.m */,
 				13D449731A483CF10072551E /* ListDatePOITVC.h */,
 				13D449741A483CF10072551E /* ListDatePOITVC.m */,
+				133960CB1A4AA97E0051588A /* Custom Tab Bar */,
 			);
 			name = "Tab Bar Controllers";
 			path = ..;
@@ -364,7 +393,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1344F08B1A409A63002BB242 /* Viewtest.xib in Resources */,
+				1344F08B1A409A63002BB242 /* CustomCategoryView.xib in Resources */,
+				133960DD1A4AD1940051588A /* CustomCategoryCell.xib in Resources */,
+				133960E11A4AEBF60051588A /* CustomCategoryTableview.xib in Resources */,
 				136663411A10A709003D9F49 /* Main.storyboard in Resources */,
 				136663461A10A709003D9F49 /* LaunchScreen.xib in Resources */,
 				136663431A10A709003D9F49 /* Images.xcassets in Resources */,
@@ -389,6 +420,7 @@
 				13D449811A48625F0072551E /* ColourSelectViewController.m in Sources */,
 				13D449781A4844BA0072551E /* ListDistancePOITVC.m in Sources */,
 				13561B7C1A2F939900C72FEA /* CategoryViewController.m in Sources */,
+				133960EA1A4B05590051588A /* CustomCategoryTVController.m in Sources */,
 				136866511A3E768700391018 /* SaveNewCategoryViewController.m in Sources */,
 				1368664E1A3E759200391018 /* EditCategoryViewController.m in Sources */,
 				131D09D01A44670B00233878 /* ListTabBarViewController.m in Sources */,
@@ -400,10 +432,12 @@
 				13EA1CF81A24CBC700E628E9 /* DataSource.m in Sources */,
 				13EA1CF21A24037D00E628E9 /* SearchViewController.m in Sources */,
 				136866541A3E853900391018 /* CategoryCellTableViewCell.m in Sources */,
+				133960CE1A4AA9B60051588A /* CustomCategoryView.m in Sources */,
 				13D4496F1A4839650072551E /* ListDistanceViewController.m in Sources */,
 				13D449841A4864AC0072551E /* ColorCollectionViewCell.m in Sources */,
 				13561B761A27D81100C72FEA /* CustomAnnotation.m in Sources */,
 				13EA1CF51A24042800E628E9 /* MapViewController.m in Sources */,
+				133960D61A4ABFF90051588A /* CustomCategoryTVC.m in Sources */,
 				13D449721A4839910072551E /* ListDateAddedViewController.m in Sources */,
 				136663381A10A709003D9F49 /* main.m in Sources */,
 				13561B791A27FAD000C72FEA /* DetailViewController.m in Sources */,
