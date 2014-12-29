@@ -27,7 +27,13 @@
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSString *category;
+@property (nonatomic, strong) NSString *categoryUppercase;
 @property (nonatomic, strong) UIColor *categoryBackgroundColour;
+
+@property (nonatomic, strong) MKMapItem *currentLocation;
+@property (nonatomic, strong) MKMapItem *destinationLocation;
+@property (nonatomic, strong) MKRoute *currentRoute;
+@property (nonatomic, strong) MKPolyline *routeOverlay;
 
 @end
 
@@ -112,28 +118,6 @@
     
     NSManagedObjectID *recordID = [[self.managedObjectContext persistentStoreCoordinator] managedObjectIDForURIRepresentation:self.urlForObjectID];
     
-    /*
-    
-     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"name", self.passedName];
-     [request setPredicate:predicate];
-    
-     self.fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-     [self.fetchedResultsController setDelegate:self];
-    
-     NSError *error = nil;
-    
-     [self.fetchedResultsController performFetch:&error];
-    
-     if (error) {
-        NSLog(@"Unable to perform fetch");
-        NSLog(@"%@, %@", error, error.localizedDescription);
-     }
-    
-     NSManagedObject *fetchedPOI = [[self.fetchedResultsController fetchedObjects]objectAtIndex:0];
-    
-    */
-    
     NSManagedObject *fetchedPOI = [self.managedObjectContext objectWithID:recordID];
 
     
@@ -142,7 +126,7 @@
     self.phone = (NSString *)[fetchedPOI valueForKey:@"phone"];
     self.descriptionText = (NSString *)[fetchedPOI valueForKey:@"customDescription"];
     self.category = (NSString *)[[fetchedPOI valueForKey:@"hasCategory"]valueForKey:@"name"];
-    self.category = [self.category uppercaseString];
+    self.categoryUppercase = [self.category uppercaseString];
     self.categoryBackgroundColour = (UIColor *)[[fetchedPOI valueForKey:@"hasCategory"]valueForKey:@"colour"];
     
     
@@ -151,8 +135,74 @@
     NSNumber *latNSN = (NSNumber *)[fetchedPOI valueForKey:@"latitude"];
     self.latitude = [latNSN doubleValue];
     
+    [self getDirections];
+    
 }
 
+
+-(void)getDirections
+{
+    
+    CLLocationCoordinate2D destinationCoordinates = CLLocationCoordinate2DMake(self.latitude, self.longitude);
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc]initWithCoordinate:destinationCoordinates addressDictionary:nil];
+    
+    self.destinationLocation = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+    
+    self.currentLocation = [MKMapItem mapItemForCurrentLocation];
+    
+    //Direction request
+    
+    MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc]init];
+    
+    [directionsRequest setSource:self.currentLocation];
+    [directionsRequest setDestination:self.destinationLocation];
+    
+    MKDirections *directions = [[MKDirections alloc]initWithRequest:directionsRequest];
+    
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"There was an error getting the directions");
+        }
+        
+        self.currentRoute = [response.routes firstObject];
+        
+        [self plotRouteOnMap:self.currentRoute];
+    }];
+    
+}
+
+-(void)plotRouteOnMap:(MKRoute *)route
+{
+    if (self.routeOverlay) {
+        [self.detailMapView removeOverlay:self.routeOverlay];
+    }
+    
+    self.routeOverlay = route.polyline;
+    
+    [self.detailMapView addOverlay:self.routeOverlay];
+}
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc]initWithPolyline:overlay];
+    renderer.strokeColor = [UIColor redColor];
+    renderer.lineWidth = 4.0;
+    return renderer;
+}
+
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    CLLocation *resultLocation = [[CLLocation alloc]initWithLatitude:self.latitude longitude:self.longitude];
+    
+    CLLocationDistance meters = [userLocation.location distanceFromLocation:resultLocation];
+    
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(((self.latitude + userLocation.location.coordinate.latitude)/2), ((self.longitude + userLocation.location.coordinate.longitude)/2));
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(center, meters, meters);
+    
+    [self.detailMapView setRegion:region animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -173,6 +223,7 @@
         editVC.urlForObjectID = self.urlForObjectID;
         editVC.detailText = self.descriptionText;
         editVC.name = self.name;
+        editVC.category = self.category;
     }
     
 }

@@ -9,11 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CustomCategoryTVController.h"
 
-@interface ListTabBarViewController : UITabBarController
+@interface ListTabBarViewController : UITabBarController <UITabBarControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-
-@property (nonatomic, weak) IBOutlet UITableView *categoryTableview;
 
 @property (nonatomic, strong) CustomCategoryTVController *categorySelector;
 

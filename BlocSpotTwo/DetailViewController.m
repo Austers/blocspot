@@ -17,11 +17,12 @@
 
 @property (nonatomic, strong) NSMutableDictionary *dictionaryForSegue;
 
-// @property (nonatomic, strong) NSString *descriptionText;
-
-// @property (strong, nonatomic) IBOutlet UITextField *descriptionTextField;
-
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+
+@property (nonatomic, strong) MKMapItem *currentLocation;
+@property (nonatomic, strong) MKMapItem *destinationLocation;
+@property (nonatomic, strong) MKRoute *currentRoute;
+@property (nonatomic, strong) MKPolyline *routeOverlay;
 
 
 @end
@@ -31,8 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self getDirections];
+    
     self.detailMapView.delegate = self;
-   // self.descriptionTextField.delegate = self;
     
     self.title = self.titleTextLabelString;
     self.titleTextLabel.text = self.titleTextLabelString;
@@ -116,13 +118,70 @@
     self.dictionaryForSegue = [[NSMutableDictionary alloc]initWithObjectsAndKeys:self.titleTextLabelString, @"Title", self.phoneTextLabel, @"Phone", self.uRLLabel, @"URLString", @(self.detailLatitude), @"Latitude", @(self.detailLongitude), @"Longitude", nil];
 }
 
+-(void)getDirections
+{
+
+    CLLocationCoordinate2D destinationCoordinates = CLLocationCoordinate2DMake(self.detailLatitude, self.detailLongitude);
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc]initWithCoordinate:destinationCoordinates addressDictionary:nil];
+    
+    self.destinationLocation = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+    
+    self.currentLocation = [MKMapItem mapItemForCurrentLocation];
+    
+    //Direction request
+    
+    MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc]init];
+    
+    [directionsRequest setSource:self.currentLocation];
+    [directionsRequest setDestination:self.destinationLocation];
+    
+    MKDirections *directions = [[MKDirections alloc]initWithRequest:directionsRequest];
+    
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"There was an error getting the directions");
+        }
+        
+        self.currentRoute = [response.routes firstObject];
+        
+        [self plotRouteOnMap:self.currentRoute];
+    }];
+    
+}
+
+-(void)plotRouteOnMap:(MKRoute *)route
+{
+    if (self.routeOverlay) {
+        [self.detailMapView removeOverlay:self.routeOverlay];
+    }
+    
+    self.routeOverlay = route.polyline;
+    
+    [self.detailMapView addOverlay:self.routeOverlay];
+}
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc]initWithPolyline:overlay];
+    renderer.strokeColor = [UIColor redColor];
+    renderer.lineWidth = 4.0;
+    return renderer;
+}
+
+
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(self.detailLatitude, self.detailLongitude);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 1000.0, 1000.0);
+    CLLocation *resultLocation = [[CLLocation alloc]initWithLatitude:self.detailLatitude longitude:self.detailLongitude];
+    
+    CLLocationDistance meters = [userLocation.location distanceFromLocation:resultLocation];
+    
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(((self.detailLatitude + userLocation.location.coordinate.latitude)/2), ((self.detailLongitude + userLocation.location.coordinate.longitude)/2));
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(center, meters, meters);
     
     [self.detailMapView setRegion:region animated:YES];
 }
+
 
 /*
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

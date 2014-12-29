@@ -7,12 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomCategoryTVC.h"
 
 #import <CoreData/CoreData.h>
 
-@interface CustomCategoryView : UIView
+@protocol CustomCategoryDelegate <NSObject>
+
+-(void) didSelectCell:(NSIndexPath *)selectedIndexPath;
+
+@end
+
+@interface CustomCategoryView : UIView <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet UIView *view;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, weak) id<CustomCategoryDelegate> delegate;
 
 @end

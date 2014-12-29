@@ -65,7 +65,7 @@
         [record setValue:[NSDate date] forKey:@"createdAt"];
         [record setValue:self.buttonColour forKey:@"colour"];
     
-        
+       // [self performSegueWithIdentifier:@"backToEditDetails" sender:self];
         
         NSError *error = nil;
         
@@ -101,10 +101,16 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"showColourSelector"])
+    {
   
     ColourSelectViewController *colourSelectVC = (ColourSelectViewController *)[segue destinationViewController];
     colourSelectVC.managedObjectContext = self.managedObjectContext;
     colourSelectVC.categoryNameTemp = self.categoryText.text;
+    }
+    
+    
     
 }
 

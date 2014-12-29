@@ -12,17 +12,24 @@
 
 #import "SearchViewController.h"
 
+#import "CustomCategoryTVController.h"
+#import "ListCategoryViewController.h"
+
 @interface ListTabBarViewController ()
 
 @property (nonatomic, strong) UIBarButtonItem *mapButton;
 @property (nonatomic, strong) UIBarButtonItem *searchButton;
+@property (nonatomic, strong) UIPopoverController *popoverMenu;
 
 @end
 
 @implementation ListTabBarViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.delegate = self;
     
     self.title = @"Saved destinations";
     
@@ -32,6 +39,13 @@
     self.searchButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButtonPressed:)];
     self.navigationItem.rightBarButtonItem = self.searchButton;
 
+}
+
+-(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if ([viewController isKindOfClass:[ListCategoryViewController class]]) {
+        [(ListCategoryViewController *) viewController changeConstraints];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,15 +63,6 @@
 {
     [self performSegueWithIdentifier:@"segueToSearch" sender:self];
 }
-
-
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    if (item.tag ==1) {
-        NSLog(@"button pressed");
-        }
-}
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     

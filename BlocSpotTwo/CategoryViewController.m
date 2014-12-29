@@ -44,59 +44,6 @@
     self.title = @"Enter details";
     
     [self extractDictionaryValues];
-    /*
-  
-Code to work on to populate picker on first load.....   
-
-    if ([self.pickerArray count] == 0) {
-        
-        NSManagedObject *record;
-        
-        record = [NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
-        
-        [record setValue:@"Eatery" forKey:@"name"];
-        [record setValue:[NSDate date] forKey:@"createdAt"];
-        
-        record = [NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
-        
-        [record setValue:@"Bingo Hall" forKey:@"name"];
-        [record setValue:[NSDate date] forKey:@"createdAt"];
-        
-        record = [NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
-        
-        [record setValue:@"Peanuttery" forKey:@"name"];
-        [record setValue:[NSDate date] forKey:@"createdAt"];
-        
-        if ([self.managedObjectContext save:&error]) {
-            NSLog(@"Successful save");
-        } else
-        {
-            if (error) {
-                NSLog(@"Unable to save record");
-                NSLog(@"%@, %@", error, error.localizedDescription);
-            }
-        }
-    }
-    
-    
-    [self.fetchedResultsController performFetch:&error];
-    
-    if (error) {
-        NSLog(@"Unable to perform fetch");
-        NSLog(@"%@, %@", error, error.localizedDescription);
-    }
-    
-    records = [self.fetchedResultsController fetchedObjects];
-    
-    categories = [records valueForKey:@"name"];
-    
-    NSLog(@"%@", categories);
-    
-    
-    
-    _pickerArray = [categories mutableCopy];
-    
-   */
 }
 
 

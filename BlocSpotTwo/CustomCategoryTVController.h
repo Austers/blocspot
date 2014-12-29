@@ -15,6 +15,4 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 //@property (nonatomic, strong) IBOutlet UILabel *categoryName;
 
-
-
 @end

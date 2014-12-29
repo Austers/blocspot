@@ -25,5 +25,6 @@
 
 @property (nonatomic, strong) NSString *detailText;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *category;
 
 @end

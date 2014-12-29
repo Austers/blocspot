@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface SavedDetailViewController : UIViewController
 
@@ -22,6 +23,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *phoneButton;
 
 @property (nonatomic, strong) IBOutlet UIView *categoryBackground;
+
+@property (nonatomic, strong) IBOutlet MKMapView *detailMapView;
 
 @property (nonatomic, strong) NSString *passedName;
 @property (nonatomic, strong) NSURL *urlForObjectID;

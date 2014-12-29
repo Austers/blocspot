@@ -58,7 +58,33 @@
     
     [self.picker reloadAllComponents];
     
+    NSUInteger pickerRow = [self determineLocationOfCategoryForDisplay];
+    
+    [self.picker selectRow:pickerRow inComponent:0 animated:YES];
+    
 }
+
+//
+
+-(NSUInteger)determineLocationOfCategoryForDisplay
+{
+    NSMutableArray *categoryStringArray = [[NSMutableArray alloc]init];
+    
+    for (NSManagedObject *object in [[self fetchedResultsController]fetchedObjects]) {
+        NSString *title = (NSString *)[object valueForKey:@"name"];
+        
+        [categoryStringArray addObject:title];
+    }
+    
+    NSLog(@"%@", categoryStringArray);
+    NSLog(@"Category name = %@", self.category);
+    
+    NSUInteger pickerRow = [categoryStringArray indexOfObject:self.category];
+
+    return pickerRow;
+}
+
+
 
 -(void)fetchPOIData
 {
@@ -67,8 +93,6 @@
     
     self.name = (NSString *)[record valueForKey:@"name"];
     self.detailText = (NSString *)[record valueForKey:@"customDescription"];
-    
-    
 }
 
 
@@ -83,17 +107,22 @@
     return [[[self fetchedResultsController]fetchedObjects]count];
 }
 
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+-(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSManagedObject *category = [[[self fetchedResultsController]fetchedObjects]objectAtIndex:row];
     
-    NSString *categoryName = (NSString *)[category valueForKey:@"name"];
+    NSString *title = (NSString *)[category valueForKey:@"name"];
+    
+    UIColor *textColour = (UIColor *)[category valueForKey:@"colour"];
+    
+    NSAttributedString *categoryName = [[NSAttributedString alloc]initWithString:title attributes:@{NSForegroundColorAttributeName:textColour}];
     
     return categoryName;
 }
 
 
 //Button methods
+
 
 -(IBAction)Save:(id)sender
 {

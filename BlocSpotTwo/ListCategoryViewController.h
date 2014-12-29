@@ -11,6 +11,8 @@
 
 @interface ListCategoryViewController : UIViewController
 
+-(void)changeConstraints;
+
 @property (nonatomic, strong) CustomCategoryTVController *customVC;
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -18,6 +20,7 @@
 @property (nonatomic, weak) IBOutlet UITableView *mainTableview;
 //@property (nonatomic, weak) IBOutlet UITableView *popupTableview;
 
-@property (nonatomic, strong) IBOutlet UIView *categoryView;
+@property (nonatomic, strong) IBOutlet CustomCategoryView *categoryView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryviewConstraintRightPosition;
 @end

@@ -15,7 +15,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface ListCategoryViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface ListCategoryViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, CustomCategoryDelegate, UITabBarControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSIndexPath *selection;
@@ -28,6 +28,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    // set delegate
+    self.categoryView.delegate = self;
+    
+    // set position to 0
+    
+    self.categoryviewConstraintRightPosition.constant = 0;
     
     ListTabBarViewController *tabController = (ListTabBarViewController *)self.tabBarController;
     self.managedObjectContext = tabController.managedObjectContext;
@@ -48,13 +55,20 @@
         NSLog(@"Unable to perform fetch");
         NSLog(@"%@, %@", error, error.localizedDescription);
     }
-    
-    if (self.customVC == nil) {
-        self.customVC = [[CustomCategoryTVController alloc] init];
-    }
-    
-    //Need to apply to delegate and datasource of custom UITableView to the Custom View Controller
-    
+}
+
+
+-(void)changeConstraints
+{
+    [self viewDidLoad];
+    NSLog(@"button hit");
+}
+
+
+-(void)didSelectCell:(NSIndexPath *)selectedIndexPath
+{
+    self.categoryviewConstraintRightPosition.constant = -self.categoryView.frame.size.width;
+    NSLog(@"Just checking");
 }
 
 - (void)didReceiveMemoryWarning {
