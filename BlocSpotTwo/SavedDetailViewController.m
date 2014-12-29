@@ -13,7 +13,7 @@
 #import "ListTabBarViewController.h"
 #import "EditPOIViewController.h"
 
-@interface SavedDetailViewController () <NSFetchedResultsControllerDelegate>
+@interface SavedDetailViewController () <NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIBarButtonItem *editButton;
 @property (nonatomic, strong) UIBarButtonItem *listButton;
@@ -162,13 +162,26 @@
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         if (error) {
             NSLog(@"There was an error getting the directions");
-        }
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Unable to determine directions" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
+        } else
+        {
         
         self.currentRoute = [response.routes firstObject];
         
         [self plotRouteOnMap:self.currentRoute];
+            
+        }
     }];
     
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"Delegate working");
+    }
 }
 
 -(void)plotRouteOnMap:(MKRoute *)route
