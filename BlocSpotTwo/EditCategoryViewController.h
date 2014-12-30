@@ -13,5 +13,10 @@
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSURL *rememberOriginalURL;
+
+@property (nonatomic, strong) NSString *detailText;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *category;
 
 @end

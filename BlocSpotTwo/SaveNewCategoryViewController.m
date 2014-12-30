@@ -64,9 +64,7 @@
         [record setValue:newCategory forKey:@"name"];
         [record setValue:[NSDate date] forKey:@"createdAt"];
         [record setValue:self.buttonColour forKey:@"colour"];
-    
-       // [self performSegueWithIdentifier:@"backToEditDetails" sender:self];
-        
+            
         NSError *error = nil;
         
         if ([self.managedObjectContext save:&error]) {

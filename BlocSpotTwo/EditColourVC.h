@@ -15,5 +15,10 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSString *categoryNameTemp;
+@property (nonatomic, strong) NSURL *rememberOriginalURL;
+
+@property (nonatomic, strong) NSString *detailText;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *category;
 
 @end

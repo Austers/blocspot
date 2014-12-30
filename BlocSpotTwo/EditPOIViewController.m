@@ -47,7 +47,6 @@
     [self fetchPOIData];
 }
 
-
 -(void)fetchPOIData
 {
     self.name = (NSString *)[self.fetchedObject valueForKey:@"name"];
@@ -209,16 +208,15 @@
  
          [self.fetchedObject setValue:[[self.fetchedResultsController fetchedObjects]objectAtIndex:[self.picker selectedRowInComponent:0]] forKey:@"hasCategory"];
  
-         NSManagedObjectID *recordID = [self.fetchedObject objectID];
- 
-         NSURL *url = [recordID URIRepresentation];
- 
-         self.urlObjectIDToBePassed = url;
- 
-         
          NSError *error = nil;
  
          if ([self.managedObjectContext save:&error]) {
+             
+             NSManagedObjectID *recordID = [self.fetchedObject objectID];
+             
+             NSURL *url = [recordID URIRepresentation];
+             
+             self.urlObjectIDToBePassed = url;
              
              [self performSegueWithIdentifier:@"segueAfterSaving" sender:self];
  
@@ -249,12 +247,18 @@
     {
         EditCategoryViewController * destinationCategoryViewController = (EditCategoryViewController*)[segue destinationViewController];
         destinationCategoryViewController.managedObjectContext = self.managedObjectContext;
+        destinationCategoryViewController.rememberOriginalURL = self.urlForObjectID;
+        destinationCategoryViewController.detailText = self.detailText;
+        destinationCategoryViewController.name = self.name;
+        destinationCategoryViewController.category = self.category;
+        
     } else if ([segue.identifier isEqualToString:@"segueAfterSaving"])
     {
         SavedDetailViewController *destinationVC = (SavedDetailViewController*)[segue destinationViewController];
         
         destinationVC.urlForObjectID = self.urlObjectIDToBePassed;
         destinationVC.managedObjectContext = self.managedObjectContext;
+        
     } else if ([segue.identifier isEqualToString:@"segueAfterDeleting"])
     {
         ListTabBarViewController * tabVC = (ListTabBarViewController*)[segue destinationViewController];

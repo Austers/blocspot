@@ -8,6 +8,7 @@
 
 #import "EditExistingViewController.h"
 #import "EditColourVC.h"
+#import "EditPOIViewController.h"
 
 @interface EditExistingViewController ()
 
@@ -26,43 +27,59 @@
     
     self.navigationItem.rightBarButtonItem = self.saveButton;
     self.navigationItem.leftBarButtonItem = self.cancelButton;
-    
-    if (self.record) {
-        [self.editText setText:[self.record valueForKey:@"name"]];
-    }
+
+    self.editText.text = self.passedText;
+
+    self.colourButton.backgroundColor = self.buttonColour;
 }
 
 
 -(void)cancelButtonPressed:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 -(void)saveButtonPressed:(id)sender
 {
-    NSString *categoryName = self.editText.text;
+    NSString *newCategory = self.editText.text;
     
-    if (categoryName && categoryName.length) {
-        [self.record setValue:categoryName forKey:@"name"];
+    if (newCategory && newCategory.length) {
+       // NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+       // NSManagedObject *record = [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+        
+        [self.record setValue:newCategory forKey:@"name"];
+        [self.record setValue:[NSDate date] forKey:@"createdAt"];
+        [self.record setValue:self.buttonColour forKey:@"colour"];
         
         NSError *error = nil;
         
         if ([self.managedObjectContext save:&error]) {
-            [self.navigationController popViewControllerAnimated:YES];
+            
+            NSManagedObjectID *recordID = [self.record objectID];
+            
+            NSURL *url = [recordID URIRepresentation];
+            
+            self.urlObjectIDToBePassed = url;
+            
+            //[self dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"backToEditDetails" sender:self];
+            
         } else
         {
             if (error) {
-                NSLog(@"Unable to save record");
+                
+                NSLog(@"Unable to save record.");
                 NSLog(@"%@, %@", error, error.localizedDescription);
             }
             
-            [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your to-do could not be saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+            [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your category could not be saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
         }
+        
         
     } else
     {
-        [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your to-do needs a name" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+        [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your category needs a name" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
     }
 
 }
@@ -82,9 +99,22 @@
  
  if ([segue.identifier isEqualToString:@"showColourSelector"])
  {
- EditColourVC *editColourVC = (EditColourVC *)[segue destinationViewController];
- EditColourVC.managedObjectContext = self.managedObjectContext;
- EditColourVC.categoryNameTemp = self.categoryText.text;
+     EditColourVC *editColourVC = (EditColourVC *)[segue destinationViewController];
+     editColourVC.managedObjectContext = self.managedObjectContext;
+     editColourVC.categoryNameTemp = self.editText.text;
+     editColourVC.rememberOriginalURL = self.rememberOriginalURL;
+     editColourVC.detailText = self.detailText;
+     editColourVC.name = self.name;
+     editColourVC.category = self.category;
+
+ } else if ([segue.identifier isEqualToString:@"backToEditDetails"])
+ {
+     EditPOIViewController *editPOIVC = (EditPOIViewController *)[segue destinationViewController];
+     editPOIVC.managedObjectContext = self.managedObjectContext;
+     editPOIVC.urlForObjectID = self.rememberOriginalURL;
+     editPOIVC.detailText = self.detailText;
+     editPOIVC.name = self.name;
+     editPOIVC.category = self.category;
  }
 }
 

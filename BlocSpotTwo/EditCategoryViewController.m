@@ -162,11 +162,14 @@
     
         SaveNewCategoryViewController * destinationCategoryViewController = (SaveNewCategoryViewController*)[nc topViewController];
         destinationCategoryViewController.managedObjectContext = self.managedObjectContext;
-    } else if ([segue.identifier isEqualToString:@"editExistingCategory"])
+    }
+    else if ([segue.identifier isEqualToString:@"editExistingCategory"])
     {
-        EditExistingViewController *destinationVC = (EditExistingViewController *)[segue destinationViewController];
+        UINavigationController *nc = (UINavigationController *)[segue destinationViewController];
         
-        [destinationVC setManagedObjectContext:self.managedObjectContext];
+        EditExistingViewController *destinationVC = (EditExistingViewController *)[nc topViewController];
+        
+        destinationVC.managedObjectContext = self.managedObjectContext;
         
         self.selection = [self.tableView indexPathForSelectedRow];
         
@@ -174,10 +177,16 @@
             NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:self.selection];
             
             if (record) {
-                [destinationVC setRecord:record];
+                destinationVC.passedText = [record valueForKey:@"name"];
+                destinationVC.buttonColour = [record valueForKey:@"colour"];
+                destinationVC.record = record;
+                destinationVC.rememberOriginalURL = self.rememberOriginalURL;
+                destinationVC.detailText = self.detailText;
+                destinationVC.name = self.name;
+                destinationVC.category = self.category;
             }
-            
-            [self setSelection:nil];
+
+            //[self setSelection:nil];
         }
     }
 }
