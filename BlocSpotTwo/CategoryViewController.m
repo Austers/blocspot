@@ -18,8 +18,6 @@
 
 @interface CategoryViewController () <NSFetchedResultsControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate>
 
-@property (nonatomic, strong) AppDelegate *appDelegate;
-
 @property (nonatomic,strong) NSString *categorySelection;
 @property (nonatomic, strong) UIBarButtonItem *savePoiButton;
 
@@ -155,19 +153,13 @@
             [record setValue:longNSN forKey:@"longitude"];
             [record setValue:[NSNumber numberWithBool:self.geoSwitch.isOn] forKey:@"geoAlert"];
             
-            self.poiLocation = CLLocationCoordinate2DMake(self.latitude, self.longitude);
-            
             if (self.geoSwitch.isOn == YES) {
-                [self storeRegionInLocationManager];
+                self.poiLocation = CLLocationCoordinate2DMake(self.latitude, self.longitude);
+                CLCircularRegion *regionToMonitor = [[CLCircularRegion alloc]initWithCenter:self.poiLocation radius:250.0 identifier:[[NSUUID UUID]UUIDString]];
+                [record setValue:regionToMonitor forKey:@"region"];
             }
              
             [record setValue:[[self.fetchedResultsController fetchedObjects]objectAtIndex:[self.picker selectedRowInComponent:0]] forKey:@"hasCategory"];
-            
-            NSManagedObjectID *recordID = [record objectID];
-            
-            NSURL *url = [recordID URIRepresentation];
-            
-            self.urlObjectIDToBePassed = url;
             
             NSError *error = nil;
             
@@ -181,7 +173,6 @@
                 
                 [self performSegueWithIdentifier:@"segueAfterSaving" sender:self];
 
-                
             } else
             {
             
@@ -197,29 +188,6 @@
         }
 }
 
-
--(void)storeRegionInLocationManager
-{
-    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [self.appDelegate.locationManager startUpdatingLocation];
-    
-    CLCircularRegion *regionToMonitor = [[CLCircularRegion alloc]initWithCenter:self.poiLocation radius:250.0 identifier:[[NSUUID UUID]UUIDString]];
-    
-    [self.appDelegate.locationManager startMonitoringForRegion:regionToMonitor];
-    [self.appDelegate.locationManager stopUpdatingLocation];
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
 -(void)extractDictionaryValues
 {
     self.name = self.receivedDictionaryFromDetailView [@"Title"];
@@ -231,8 +199,6 @@
     NSNumber *receivedLongitude = self.receivedDictionaryFromDetailView [@"Longitude"];
     self.longitude = [receivedLongitude doubleValue];
 }
-
-
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -250,7 +216,5 @@
     }
     
 }
-
-
 
 @end

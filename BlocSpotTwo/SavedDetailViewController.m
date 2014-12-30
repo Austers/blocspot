@@ -43,14 +43,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    [self fetchPOI];
+    
     self.editButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
     self.listButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"listbutton"] style:UIBarButtonItemStylePlain target:self action:@selector(listButtonPressed:)];
     
     self.navigationItem.leftBarButtonItem = self.listButton;
     self.navigationItem.rightBarButtonItem = self.editButton;
-    
-    [self fetchPOI];
     
     self.Title.text = self.name;
     
@@ -134,7 +133,6 @@
     self.categoryBackgroundColour = (UIColor *)[[self.fetchedObject valueForKey:@"hasCategory"]valueForKey:@"colour"];
     
     self.visitedSwitch.on = [[self.fetchedObject valueForKey:@"visited"]boolValue];
-    
     
     NSNumber *longNMN = (NSNumber *)[self.fetchedObject valueForKey:@"longitude"];
     self.longitude = [longNMN doubleValue];

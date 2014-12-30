@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+
 @end
 
 @implementation MapViewController
@@ -70,6 +71,7 @@
         NSLog(@"%@, %@", error, error.localizedDescription);
      }
 }
+
 
 -(void) addAnnotationsTest
 {

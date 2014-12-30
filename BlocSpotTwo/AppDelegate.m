@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+//@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSMutableArray *regionArray;
 
 @end
 
@@ -74,8 +76,10 @@
     if ([dataTest count] == 0) {
         [self populateData];
         NSLog(@"%@", dataTest);
-        
     }
+    
+    [self fetchRegionData];
+    [self locationManagerSetup];
     
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
@@ -83,6 +87,51 @@
     mapVC.managedObjectContext = self.managedObjectContext;
     
        return YES;
+}
+
+-(void)locationManagerSetup
+{
+    if (self.locationManager == nil) {
+        self.locationManager = [[CLLocationManager alloc]init];
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        
+        self.locationManager.delegate = self;
+        
+        [self.locationManager stopUpdatingLocation];
+        
+    }
+    
+}
+
+-(void)fetchRegionData
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"PointOfInterest" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    //[request setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"dateSaved" ascending:YES]]];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"geoAlert == 1"];
+    [request setPredicate:predicate];
+
+    NSError *error = nil;
+    
+    NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (error) {
+        NSLog(@"Unable to perform fetch");
+        NSLog(@"%@, %@", error, error.localizedDescription);
+    }
+    
+    for (NSManagedObject *object in array)
+    {
+        CLRegion *region = (CLRegion *)[object valueForKey:@"region"];
+        
+        [self.locationManager startMonitoringForRegion:region];
+        [self.regionArray addObject:region];
+    }
+    
+    NSLog(@"Region array contains: %@", self.regionArray);
 }
 
 
@@ -140,6 +189,24 @@
             NSLog(@"%@, %@", error, error.localizedDescription);
         }
     }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *location = [locations lastObject];
+    
+    NSLog(@"Incoming alert %+.6f %+.6f", location.coordinate.latitude, location.coordinate.longitude);
+}
+
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    [[[UIAlertView alloc]initWithTitle:@"BOOM!" message:@"You have successfully detected ENTERING the region using geolocation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    [[[UIAlertView alloc]initWithTitle:@"BOOM!" message:@"You have successfully detected EXITING the region using geolocation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

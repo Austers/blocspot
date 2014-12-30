@@ -14,6 +14,7 @@
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="region" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visited" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="hasCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="assignedTo" inverseEntity="Category" syncable="YES"/>
@@ -23,7 +24,7 @@
     </entity>
     <elements>
         <element name="Category" positionX="171" positionY="-9" width="128" height="105"/>
-        <element name="PointOfInterest" positionX="-54" positionY="-9" width="128" height="195"/>
+        <element name="PointOfInterest" positionX="-54" positionY="-9" width="128" height="208"/>
         <element name="SearchHistory" positionX="-27" positionY="-135" width="128" height="58"/>
     </elements>
 </model>
