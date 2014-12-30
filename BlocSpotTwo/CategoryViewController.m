@@ -13,8 +13,12 @@
 #import "SavedDetailViewController.h"
 
 #import <CoreData/CoreData.h>
+#import <CoreLocation/CoreLocation.h>
+#import "AppDelegate.h"
 
-@interface CategoryViewController () <NSFetchedResultsControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface CategoryViewController () <NSFetchedResultsControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate>
+
+@property (nonatomic, strong) AppDelegate *appDelegate;
 
 @property (nonatomic,strong) NSString *categorySelection;
 @property (nonatomic, strong) UIBarButtonItem *savePoiButton;
@@ -33,7 +37,7 @@
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSDate *dateCreated;
-@property(nonatomic, getter=isOn) BOOL on;
+@property (nonatomic, assign) CLLocationCoordinate2D poiLocation;
 
 @end
 
@@ -150,6 +154,12 @@
             [record setValue:latNSN forKey:@"latitude"];
             [record setValue:longNSN forKey:@"longitude"];
             [record setValue:[NSNumber numberWithBool:self.geoSwitch.isOn] forKey:@"geoAlert"];
+            
+            self.poiLocation = CLLocationCoordinate2DMake(self.latitude, self.longitude);
+            
+            if (self.geoSwitch.isOn == YES) {
+                [self storeRegionInLocationManager];
+            }
              
             [record setValue:[[self.fetchedResultsController fetchedObjects]objectAtIndex:[self.picker selectedRowInComponent:0]] forKey:@"hasCategory"];
             
@@ -188,9 +198,15 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)storeRegionInLocationManager
+{
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [self.appDelegate.locationManager startUpdatingLocation];
+    
+    CLCircularRegion *regionToMonitor = [[CLCircularRegion alloc]initWithCenter:self.poiLocation radius:250.0 identifier:[[NSUUID UUID]UUIDString]];
+    
+    [self.appDelegate.locationManager startMonitoringForRegion:regionToMonitor];
+    [self.appDelegate.locationManager stopUpdatingLocation];
 }
 
 /*

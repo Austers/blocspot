@@ -20,11 +20,8 @@
 @property (nonatomic, strong) UIBarButtonItem *savePoiButton;
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-
 @property (nonatomic, strong) NSManagedObject *fetchedObject;
-
 @property (nonatomic, strong) NSDate *dateCreated;
-
 @property (nonatomic, strong) NSURL *urlObjectIDToBePassed;
 
 @end

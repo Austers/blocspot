@@ -19,6 +19,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *urlButton;
 @property (nonatomic, strong) IBOutlet UILabel *categoryLabel;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionTextLabel;
+@property (nonatomic, strong) IBOutlet UISwitch *visitedSwitch;
 
 @property (nonatomic, strong) IBOutlet UIButton *phoneButton;
 

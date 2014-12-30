@@ -34,7 +34,8 @@
 @property (nonatomic, strong) MKMapItem *destinationLocation;
 @property (nonatomic, strong) MKRoute *currentRoute;
 @property (nonatomic, strong) MKPolyline *routeOverlay;
-@property (nonatomic, getter=isON) BOOL on;
+
+@property (nonatomic, strong) NSManagedObject *fetchedObject;
 
 @end
 
@@ -73,6 +74,8 @@
     self.categoryLabel.textColor = [UIColor whiteColor];
     self.descriptionTextLabel.text = self.descriptionText;
     self.categoryBackground.backgroundColor = self.categoryBackgroundColour;
+    
+    [self.visitedSwitch addTarget:self action:@selector(setState:) forControlEvents:UIControlEventValueChanged];
     
 }
 
@@ -119,21 +122,23 @@
     
     NSManagedObjectID *recordID = [[self.managedObjectContext persistentStoreCoordinator] managedObjectIDForURIRepresentation:self.urlForObjectID];
     
-    NSManagedObject *fetchedPOI = [self.managedObjectContext objectWithID:recordID];
+    self.fetchedObject = [self.managedObjectContext objectWithID:recordID];
 
     
-    self.name = (NSString *)[fetchedPOI valueForKey:@"name"];
-    self.url = (NSString *)[fetchedPOI valueForKey:@"url"];
-    self.phone = (NSString *)[fetchedPOI valueForKey:@"phone"];
-    self.descriptionText = (NSString *)[fetchedPOI valueForKey:@"customDescription"];
-    self.category = (NSString *)[[fetchedPOI valueForKey:@"hasCategory"]valueForKey:@"name"];
+    self.name = (NSString *)[self.fetchedObject valueForKey:@"name"];
+    self.url = (NSString *)[self.fetchedObject valueForKey:@"url"];
+    self.phone = (NSString *)[self.fetchedObject valueForKey:@"phone"];
+    self.descriptionText = (NSString *)[self.fetchedObject valueForKey:@"customDescription"];
+    self.category = (NSString *)[[self.fetchedObject valueForKey:@"hasCategory"]valueForKey:@"name"];
     self.categoryUppercase = [self.category uppercaseString];
-    self.categoryBackgroundColour = (UIColor *)[[fetchedPOI valueForKey:@"hasCategory"]valueForKey:@"colour"];
+    self.categoryBackgroundColour = (UIColor *)[[self.fetchedObject valueForKey:@"hasCategory"]valueForKey:@"colour"];
+    
+    self.visitedSwitch.on = [[self.fetchedObject valueForKey:@"visited"]boolValue];
     
     
-    NSNumber *longNMN = (NSNumber *)[fetchedPOI valueForKey:@"longitude"];
+    NSNumber *longNMN = (NSNumber *)[self.fetchedObject valueForKey:@"longitude"];
     self.longitude = [longNMN doubleValue];
-    NSNumber *latNSN = (NSNumber *)[fetchedPOI valueForKey:@"latitude"];
+    NSNumber *latNSN = (NSNumber *)[self.fetchedObject valueForKey:@"latitude"];
     self.latitude = [latNSN doubleValue];
     
     [self getDirections];
@@ -218,9 +223,32 @@
     [self.detailMapView setRegion:region animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+-(void)setState:(id)sender
+{
+    BOOL state = [sender isOn];
+    
+    if (state) {
+        [self.fetchedObject setValue:[NSNumber numberWithBool:state] forKey:@"visited"];
+    } else
+    {
+        [self.fetchedObject setValue:[NSNumber numberWithBool:NO] forKey:@"visited"];
+    }
+    
+    NSError *error = nil;
+    
+    if ([self.managedObjectContext save:&error]) {
+        
+    } else
+    {
+        if (error) {
+            
+            NSLog(@"Unable to change visited state");
+            NSLog(@"%@, %@", error, error.localizedDescription);
+        }
+        
+        [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your visited state could not be changed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+    }
 }
 
 
