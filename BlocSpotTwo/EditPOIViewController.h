@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) IBOutlet UIButton *deleteButton;
 @property (nonatomic, strong) IBOutlet UIButton *saveButton;
+@property (nonatomic, strong) IBOutlet UISwitch *geoSwitch;
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSURL *urlForObjectID;

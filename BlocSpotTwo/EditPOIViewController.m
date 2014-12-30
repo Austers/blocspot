@@ -93,6 +93,7 @@
     
     self.name = (NSString *)[record valueForKey:@"name"];
     self.detailText = (NSString *)[record valueForKey:@"customDescription"];
+    self.geoSwitch.on = [[record valueForKey:@"geoAlert"]boolValue];
 }
 
 

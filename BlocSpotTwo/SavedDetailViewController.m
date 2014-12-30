@@ -34,6 +34,7 @@
 @property (nonatomic, strong) MKMapItem *destinationLocation;
 @property (nonatomic, strong) MKRoute *currentRoute;
 @property (nonatomic, strong) MKPolyline *routeOverlay;
+@property (nonatomic, getter=isON) BOOL on;
 
 @end
 

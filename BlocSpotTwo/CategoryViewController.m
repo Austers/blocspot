@@ -33,6 +33,7 @@
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, strong) NSDate *dateCreated;
+@property(nonatomic, getter=isOn) BOOL on;
 
 @end
 
@@ -104,6 +105,7 @@
     self.categorySelection = (NSString *)[selectedCategory valueForKey:@"name"];
     
     NSLog(@"%@, %@", self.categorySelection, self.receivedDictionaryFromDetailView);
+    NSLog(@"The switch is %d",self.geoSwitch.isOn);
     
     [self commitPOIData];
 
@@ -122,7 +124,15 @@
  
     NSString *description = self.detailTextField.text;
     
-        if (description && description.length) {
+        if (!(description && description.length))
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Please enter a description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            NSLog(@"What is going on here?");
+            
+        }
+        else
+        {
             NSEntityDescription *entity = [NSEntityDescription entityForName:@"PointOfInterest" inManagedObjectContext:self.managedObjectContext];
             NSManagedObject *record = [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
             
@@ -139,6 +149,7 @@
             [record setValue:self.url forKey:@"url"];
             [record setValue:latNSN forKey:@"latitude"];
             [record setValue:longNSN forKey:@"longitude"];
+            [record setValue:[NSNumber numberWithBool:self.geoSwitch.isOn] forKey:@"geoAlert"];
              
             [record setValue:[[self.fetchedResultsController fetchedObjects]objectAtIndex:[self.picker selectedRowInComponent:0]] forKey:@"hasCategory"];
             
@@ -152,32 +163,28 @@
             
             if ([self.managedObjectContext save:&error]) {
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
-                
                 NSManagedObjectID *recordID = [record objectID];
                 
                 NSURL *url = [recordID URIRepresentation];
                 
                 self.urlObjectIDToBePassed = url;
+                
+                [self performSegueWithIdentifier:@"segueAfterSaving" sender:self];
 
                 
             } else
             {
-                if (error) {
+            
+            if (error) {
                     
                     NSLog(@"Unable to save record.");
                     NSLog(@"%@, %@", error, error.localizedDescription);
-                }
+                
+            }
                 
                 [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your Point Of Interest could not be saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
             }
-            
-            
-        } else
-        {
-            [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Please enter a description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
-    }
-    
+        }
 }
 
 

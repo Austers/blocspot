@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIPickerView *picker;
 
 @property (nonatomic, strong) IBOutlet UITextField *detailTextField;
+@property (nonatomic, strong) IBOutlet UISwitch *geoSwitch;
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

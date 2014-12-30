@@ -547,9 +547,32 @@
                                         </state>
                                         <connections>
                                             <action selector="Save:" destination="hkg-8k-Gt7" eventType="touchUpInside" id="3pI-45-yRw"/>
-                                            <segue destination="VaG-C8-SsB" kind="show" identifier="segueAfterSaving" id="91G-qo-uOb"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FOq-of-9Y0">
+                                        <rect key="frame" x="214" y="437" width="173" height="46"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Zv-QU-iS9">
+                                                <rect key="frame" x="8" y="7" width="51" height="31"/>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Geo-Alert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGW-ZM-H1O">
+                                                <rect key="frame" x="78" y="7" width="87" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="rGW-ZM-H1O" firstAttribute="leading" secondItem="3Zv-QU-iS9" secondAttribute="trailing" constant="21" id="0GE-KX-WQ7"/>
+                                            <constraint firstAttribute="bottom" secondItem="rGW-ZM-H1O" secondAttribute="bottom" constant="8" id="FX5-YQ-hNt"/>
+                                            <constraint firstAttribute="trailing" secondItem="rGW-ZM-H1O" secondAttribute="trailing" constant="8" id="qu3-EM-N77"/>
+                                            <constraint firstItem="rGW-ZM-H1O" firstAttribute="top" secondItem="FOq-of-9Y0" secondAttribute="top" constant="7" id="tdY-Z6-oDL"/>
+                                            <constraint firstAttribute="bottom" secondItem="3Zv-QU-iS9" secondAttribute="bottom" constant="8" id="uL5-Bo-QVU"/>
+                                            <constraint firstItem="3Zv-QU-iS9" firstAttribute="leading" secondItem="FOq-of-9Y0" secondAttribute="leading" constant="8" id="zAd-64-Pm3"/>
+                                            <constraint firstItem="3Zv-QU-iS9" firstAttribute="top" secondItem="FOq-of-9Y0" secondAttribute="top" constant="7" id="znm-JR-jX9"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -558,6 +581,8 @@
                                     <constraint firstAttribute="centerX" secondItem="uAd-Y5-fm6" secondAttribute="centerX" id="3XD-Ga-DDn"/>
                                     <constraint firstItem="VjZ-LA-13X" firstAttribute="top" secondItem="rLX-G1-RM5" secondAttribute="top" constant="230" id="FKE-1I-sjR"/>
                                     <constraint firstAttribute="centerX" secondItem="kmu-9T-mdR" secondAttribute="centerX" id="HJg-Yv-jU9"/>
+                                    <constraint firstAttribute="centerX" secondItem="FOq-of-9Y0" secondAttribute="centerX" constant="-0.5" id="IPx-46-ZEa"/>
+                                    <constraint firstItem="FOq-of-9Y0" firstAttribute="top" secondItem="rLX-G1-RM5" secondAttribute="top" constant="437" id="M7W-NE-wVj"/>
                                     <constraint firstItem="MyL-fa-wCy" firstAttribute="top" secondItem="rLX-G1-RM5" secondAttribute="top" constant="442" id="MZp-ic-t6M"/>
                                     <constraint firstItem="CIb-Kh-o1d" firstAttribute="top" secondItem="rLX-G1-RM5" secondAttribute="top" constant="341" id="NNo-L4-XsA"/>
                                     <constraint firstItem="uAd-Y5-fm6" firstAttribute="top" secondItem="rLX-G1-RM5" secondAttribute="top" constant="140" id="Odc-HU-eS6"/>
@@ -604,7 +629,9 @@
                     </view>
                     <connections>
                         <outlet property="detailTextField" destination="kmu-9T-mdR" id="hEh-zQ-V67"/>
+                        <outlet property="geoSwitch" destination="3Zv-QU-iS9" id="x58-zT-V0Y"/>
                         <outlet property="picker" destination="uAd-Y5-fm6" id="m26-b8-aHT"/>
+                        <segue destination="VaG-C8-SsB" kind="show" identifier="segueAfterSaving" id="SZk-zR-ATO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nKF-CN-p4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1381,6 +1408,30 @@
                                             <action selector="Save:" destination="c2B-mO-zH4" eventType="touchUpInside" id="Dk3-Fv-ONp"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Vg-8Z-x7U">
+                                        <rect key="frame" x="215" y="430" width="173" height="46"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MvL-qk-MWW">
+                                                <rect key="frame" x="8" y="7" width="51" height="31"/>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Geo-Alert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnM-iX-OfK">
+                                                <rect key="frame" x="78" y="7" width="87" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="XnM-iX-OfK" secondAttribute="trailing" constant="8" id="A64-Xp-2Te"/>
+                                            <constraint firstItem="MvL-qk-MWW" firstAttribute="leading" secondItem="5Vg-8Z-x7U" secondAttribute="leading" constant="8" id="CWT-Tb-Thp"/>
+                                            <constraint firstAttribute="bottom" secondItem="XnM-iX-OfK" secondAttribute="bottom" constant="8" id="Gnh-NE-bSX"/>
+                                            <constraint firstItem="XnM-iX-OfK" firstAttribute="leading" secondItem="MvL-qk-MWW" secondAttribute="trailing" constant="21" id="T9o-dw-WP7"/>
+                                            <constraint firstItem="MvL-qk-MWW" firstAttribute="top" secondItem="5Vg-8Z-x7U" secondAttribute="top" constant="7" id="bbZ-Z2-ocj"/>
+                                            <constraint firstAttribute="bottom" secondItem="MvL-qk-MWW" secondAttribute="bottom" constant="8" id="ds8-Sg-O9r"/>
+                                            <constraint firstItem="XnM-iX-OfK" firstAttribute="top" secondItem="5Vg-8Z-x7U" secondAttribute="top" constant="7" id="wwK-1B-Qik"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1390,6 +1441,7 @@
                                     <constraint firstItem="4M1-Gr-NdZ" firstAttribute="top" secondItem="KJk-2p-aLb" secondAttribute="top" constant="95" id="4De-cE-FPr"/>
                                     <constraint firstItem="pTD-1C-sZb" firstAttribute="top" secondItem="KJk-2p-aLb" secondAttribute="top" constant="442" id="9Mc-NU-qGO"/>
                                     <constraint firstAttribute="centerX" secondItem="273-Tu-M0j" secondAttribute="centerX" id="EdO-eH-O7E"/>
+                                    <constraint firstItem="5Vg-8Z-x7U" firstAttribute="top" secondItem="KJk-2p-aLb" secondAttribute="top" constant="430" id="FiE-JL-SA5"/>
                                     <constraint firstItem="Jqj-Di-1ZI" firstAttribute="top" secondItem="s20-Q0-rFs" secondAttribute="bottom" constant="19" id="IUx-bF-zKU"/>
                                     <constraint firstItem="z2D-t2-6OZ" firstAttribute="top" secondItem="KJk-2p-aLb" secondAttribute="top" constant="230" id="N0I-AZ-5Nt"/>
                                     <constraint firstAttribute="centerX" secondItem="pTD-1C-sZb" secondAttribute="centerX" constant="-0.5" id="PMx-3d-DRg"/>
@@ -1403,6 +1455,7 @@
                                     <constraint firstItem="273-Tu-M0j" firstAttribute="bottom" secondItem="4M1-Gr-NdZ" secondAttribute="bottom" constant="161" id="ipo-Bi-l5U"/>
                                     <constraint firstAttribute="centerX" secondItem="z2D-t2-6OZ" secondAttribute="centerX" constant="-0.5" id="jxU-iY-jOg"/>
                                     <constraint firstAttribute="centerX" secondItem="4M1-Gr-NdZ" secondAttribute="centerX" constant="-0.5" id="lOs-bP-GVP"/>
+                                    <constraint firstAttribute="centerX" secondItem="5Vg-8Z-x7U" secondAttribute="centerX" constant="-1.5" id="rDj-at-973"/>
                                     <constraint firstItem="273-Tu-M0j" firstAttribute="top" secondItem="s20-Q0-rFs" secondAttribute="top" constant="-201" id="u2q-Ne-Sow"/>
                                     <constraint firstAttribute="centerX" secondItem="Jqj-Di-1ZI" secondAttribute="centerX" id="wvS-PJ-NUF"/>
                                     <constraint firstItem="Jqj-Di-1ZI" firstAttribute="top" secondItem="KJk-2p-aLb" secondAttribute="top" constant="392" id="yi1-HZ-PEj"/>
@@ -1440,6 +1493,7 @@
                     <connections>
                         <outlet property="deleteButton" destination="etd-YK-AZe" id="2gZ-TF-BVa"/>
                         <outlet property="detailTextField" destination="Jqj-Di-1ZI" id="3Lg-6I-cmx"/>
+                        <outlet property="geoSwitch" destination="MvL-qk-MWW" id="yfL-6U-ijN"/>
                         <outlet property="picker" destination="273-Tu-M0j" id="OmU-Jg-WYM"/>
                         <outlet property="saveButton" destination="pTD-1C-sZb" id="JtC-TA-Wgm"/>
                     </connections>
@@ -1458,11 +1512,11 @@
         <image name="mapbutton" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QoY-Zm-fbt"/>
-        <segue reference="Z7V-hA-yuJ"/>
-        <segue reference="LNQ-Gd-8ag"/>
+        <segue reference="SZk-zR-ATO"/>
         <segue reference="HJG-7T-iCW"/>
         <segue reference="7Qf-VG-flh"/>
         <segue reference="F7Q-4U-zjj"/>
+        <segue reference="QoY-Zm-fbt"/>
+        <segue reference="LNQ-Gd-8ag"/>
     </inferredMetricsTieBreakers>
 </document>
