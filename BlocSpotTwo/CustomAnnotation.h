@@ -14,6 +14,7 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
+@property (nonatomic, strong) NSURL *urlForObjectID;
 
 -(id)initWithTitle:(NSString *)newTitle Subtitle:(NSString *)subTitle Location:(CLLocationCoordinate2D)location;
 -(MKAnnotationView *) annotationView;

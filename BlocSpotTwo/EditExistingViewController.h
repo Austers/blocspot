@@ -14,8 +14,13 @@
 
 @property (nonatomic, weak) IBOutlet UITextField *editText;
 
+@property (nonatomic, strong) IBOutlet UIButton *colourButton;
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, strong) NSManagedObject *record;
+
+@property (nonatomic, strong) UIColor *buttonColour;
+@property (nonatomic, strong) NSString *passedText;
 
 @end

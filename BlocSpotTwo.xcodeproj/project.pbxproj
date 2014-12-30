@@ -43,6 +43,7 @@
 		13EA1CF21A24037D00E628E9 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EA1CF11A24037D00E628E9 /* SearchViewController.m */; };
 		13EA1CF51A24042800E628E9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EA1CF41A24042800E628E9 /* MapViewController.m */; };
 		13EA1CF81A24CBC700E628E9 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EA1CF71A24CBC700E628E9 /* DataSource.m */; };
+		13FF9F131A53280600D4A8DC /* EditColourVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FF9F121A53280600D4A8DC /* EditColourVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,8 @@
 		13EA1CF41A24042800E628E9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = BlocSpotTwo/MapViewController.m; sourceTree = "<group>"; };
 		13EA1CF61A24CBC700E628E9 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSource.h; path = BlocSpotTwo/DataSource.h; sourceTree = "<group>"; };
 		13EA1CF71A24CBC700E628E9 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSource.m; path = BlocSpotTwo/DataSource.m; sourceTree = "<group>"; };
+		13FF9F111A53280600D4A8DC /* EditColourVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditColourVC.h; path = BlocSpotTwo/EditColourVC.h; sourceTree = "<group>"; };
+		13FF9F121A53280600D4A8DC /* EditColourVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditColourVC.m; path = BlocSpotTwo/EditColourVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +237,8 @@
 				136866531A3E853900391018 /* CategoryCellTableViewCell.m */,
 				13D4497F1A48625F0072551E /* ColourSelectViewController.h */,
 				13D449801A48625F0072551E /* ColourSelectViewController.m */,
+				13FF9F111A53280600D4A8DC /* EditColourVC.h */,
+				13FF9F121A53280600D4A8DC /* EditColourVC.m */,
 				13D449821A4864AC0072551E /* ColorCollectionViewCell.h */,
 				13D449831A4864AC0072551E /* ColorCollectionViewCell.m */,
 			);
@@ -428,6 +433,7 @@
 				13EA1CF81A24CBC700E628E9 /* DataSource.m in Sources */,
 				13EA1CF21A24037D00E628E9 /* SearchViewController.m in Sources */,
 				136866541A3E853900391018 /* CategoryCellTableViewCell.m in Sources */,
+				13FF9F131A53280600D4A8DC /* EditColourVC.m in Sources */,
 				133960CE1A4AA9B60051588A /* CustomCategoryView.m in Sources */,
 				13D4496F1A4839650072551E /* ListDistanceViewController.m in Sources */,
 				13D449841A4864AC0072551E /* ColorCollectionViewCell.m in Sources */,

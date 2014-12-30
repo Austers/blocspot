@@ -13,6 +13,7 @@
 #import "CustomAnnotation.h"
 #import <CoreData/CoreData.h>
 #import "ListTabBarViewController.h"
+#import "SavedDetailViewController.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, NSFetchedResultsControllerDelegate>
 
@@ -20,6 +21,7 @@
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+@property (nonatomic, strong) NSURL *urlForObjectID;
 
 @end
 
@@ -73,12 +75,31 @@
 }
 
 
--(void) addAnnotationsTest
+
+-(void) fetchDataAndCreateAnnotations
 {
-    CLLocationCoordinate2D testCoord = CLLocationCoordinate2DMake(40.704605000000001, -73.920426000000006);
-    CustomAnnotation *test = [[CustomAnnotation alloc]initWithTitle:@"Tester Title" Subtitle:@"Tester Subtitle" Location:testCoord];
+    NSMutableArray *annotations = [[NSMutableArray alloc]init];
     
-    [self.mapView addAnnotation:test];
+    for (NSManagedObject *object in [[self fetchedResultsController]fetchedObjects])
+    {
+        NSNumber *longNMN = (NSNumber *)[object valueForKey:@"longitude"];
+        double longitude = [longNMN doubleValue];
+        NSNumber *latNSN = (NSNumber *)[object valueForKey:@"latitude"];
+        double latitude = [latNSN doubleValue];
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        NSString *title = (NSString *)[object valueForKey:@"name"];
+        
+        NSManagedObjectID *recordID = [object objectID];
+        
+        NSURL *url = [recordID URIRepresentation];
+        
+        CustomAnnotation *annotation = [[CustomAnnotation alloc]initWithTitle:title Subtitle:nil Location:coordinate];
+        annotation.urlForObjectID = url;
+        
+        [annotations addObject:annotation];
+    }
+    
+    [self.mapView addAnnotations:annotations];
 }
 
 
@@ -108,6 +129,16 @@
             }
 }
 
+- (void)mapView:(MKMapView *)mapView annotationView:(CustomAnnotation *)view calloutAccessoryControlTapped:(UIControl *)control {
+    // Go to edit view
+    self.urlForObjectID = view.urlForObjectID;
+    NSLog(@"Hit");
+    [self performSegueWithIdentifier:@"savedDetailView" sender:self];
+    
+}
+
+
+
 //Show annotation automatically
 
 
@@ -118,7 +149,7 @@
     
     [self.mapView setRegion:region animated:YES];
     
-    [self addAnnotationsTest];
+    [self fetchDataAndCreateAnnotations];
 
 }
 
@@ -143,6 +174,11 @@
     {
         ListTabBarViewController *tabVC = (ListTabBarViewController *)[segue destinationViewController];
         tabVC.managedObjectContext = self.managedObjectContext;
+    } else if ([segue.identifier isEqualToString:@"savedDetailView"])
+    {
+        SavedDetailViewController *savedDetailVC = (SavedDetailViewController *)[segue destinationViewController];
+        savedDetailVC.managedObjectContext = self.managedObjectContext;
+        savedDetailVC.urlForObjectID = self.urlForObjectID;
     }
 }
 
