@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UIBarButtonItem *editButton;
 @property (nonatomic, strong) UIBarButtonItem *listButton;
 
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+//@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, strong) NSString *descriptionText;
 @property (nonatomic, strong) NSString *name;

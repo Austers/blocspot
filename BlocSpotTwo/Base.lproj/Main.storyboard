@@ -1496,6 +1496,8 @@
                         <outlet property="geoSwitch" destination="MvL-qk-MWW" id="yfL-6U-ijN"/>
                         <outlet property="picker" destination="273-Tu-M0j" id="OmU-Jg-WYM"/>
                         <outlet property="saveButton" destination="pTD-1C-sZb" id="JtC-TA-Wgm"/>
+                        <segue destination="VaG-C8-SsB" kind="show" identifier="segueAfterSaving" id="i9Y-EP-xMk"/>
+                        <segue destination="yHx-xa-aGQ" kind="show" identifier="segueAfterDeleting" id="G4c-Qh-7yH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rk-Vn-pVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1512,11 +1514,11 @@
         <image name="mapbutton" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SZk-zR-ATO"/>
-        <segue reference="HJG-7T-iCW"/>
         <segue reference="7Qf-VG-flh"/>
-        <segue reference="F7Q-4U-zjj"/>
+        <segue reference="Mt3-mG-2ah"/>
+        <segue reference="i9Y-EP-xMk"/>
         <segue reference="QoY-Zm-fbt"/>
         <segue reference="LNQ-Gd-8ag"/>
+        <segue reference="HJG-7T-iCW"/>
     </inferredMetricsTieBreakers>
 </document>

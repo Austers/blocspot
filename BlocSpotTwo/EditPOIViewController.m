@@ -10,17 +10,22 @@
 
 #import "EditCategoryViewController.h"
 #import "SavedDetailViewController.h"
+#import "ListTabBarViewController.h"
 
 #import <CoreData/CoreData.h>
 
-@interface EditPOIViewController () <NSFetchedResultsControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface EditPOIViewController () <NSFetchedResultsControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic,strong) NSString *categorySelection;
 @property (nonatomic, strong) UIBarButtonItem *savePoiButton;
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+@property (nonatomic, strong) NSManagedObject *fetchedObject;
+
 @property (nonatomic, strong) NSDate *dateCreated;
+
+@property (nonatomic, strong) NSURL *urlObjectIDToBePassed;
 
 @end
 
@@ -32,7 +37,25 @@
     self.title = @"Edit details";
     self.detailTextField.text= self.detailText;
     
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"PointOfInterest" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    
+    [request setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"dateSaved" ascending:YES]]];
+    
+    NSManagedObjectID *recordID = [[self.managedObjectContext persistentStoreCoordinator] managedObjectIDForURIRepresentation:self.urlForObjectID];
+    
+    self.fetchedObject = [self.managedObjectContext objectWithID:recordID];
+
     [self fetchPOIData];
+}
+
+
+-(void)fetchPOIData
+{
+    self.name = (NSString *)[self.fetchedObject valueForKey:@"name"];
+    self.detailText = (NSString *)[self.fetchedObject valueForKey:@"customDescription"];
+    self.geoSwitch.on = [[self.fetchedObject valueForKey:@"geoAlert"]boolValue];
 }
 
 
@@ -85,19 +108,6 @@
 }
 
 
-
--(void)fetchPOIData
-{
-    NSManagedObjectID *recordID = [[self.managedObjectContext persistentStoreCoordinator] managedObjectIDForURIRepresentation:self.urlForObjectID];
-    NSManagedObject *record = [self.managedObjectContext objectWithID:recordID];
-    
-    self.name = (NSString *)[record valueForKey:@"name"];
-    self.detailText = (NSString *)[record valueForKey:@"customDescription"];
-    self.geoSwitch.on = [[record valueForKey:@"geoAlert"]boolValue];
-}
-
-
-
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -133,15 +143,41 @@
     
     NSLog(@"%@, %@", self.categorySelection, self.receivedDictionaryFromDetailView);
     
-   // [self changePOIData];
+    [self changePOIData];
     
 }
 
 -(IBAction)delete:(id)sender
 {
-    [[[UIAlertView alloc]initWithTitle:@"Delete record" message:@"Are you sure you wish to delete this record?" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+    [[[UIAlertView alloc]initWithTitle:@"Delete record" message:@"Are you sure you wish to delete this record?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
     
-    // Delete record
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        
+        NSLog(@"Triggering");
+        
+        [self.managedObjectContext deleteObject:self.fetchedObject];
+        
+        NSError *error = nil;
+        
+        if ([self.fetchedObject.self.managedObjectContext save:&error]) {
+            
+            [self performSegueWithIdentifier:@"segueAfterDeleting" sender:self];
+            
+        } else
+        {
+            
+            if (error) {
+                
+                NSLog(@"Unable to delete record.");
+                NSLog(@"%@, %@", error, error.localizedDescription);
+                
+            }
+        }
+    }
 }
 
 
@@ -151,56 +187,58 @@
     self.detailText = self.detailTextField.text;
     return YES;
 }
-/*
+
 -(void)changePOIData
-{
-    
-    NSString *description = self.detailTextField.text;
-    
-    if (description && description.length) {
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"PointOfInterest" inManagedObjectContext:self.managedObjectContext];
-        NSManagedObject *record = [[NSManagedObject alloc]initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-        
-        NSNumber *latNSN = [NSNumber numberWithDouble:self.latitude];
-        NSNumber *longNSN = [NSNumber numberWithDouble:self.longitude];
-        
-        [record setValue:description forKey:@"customDescription"];
-        
-        self.dateCreated = [NSDate date];
-        
-        [record setValue:self.dateCreated forKey:@"dateSaved"];
-        [record setValue:self.name forKey:@"name"];
-        [record setValue:self.phone forKey:@"phone"];
-        [record setValue:self.url forKey:@"url"];
-        [record setValue:latNSN forKey:@"latitude"];
-        [record setValue:longNSN forKey:@"longitude"];
-        
-        [record setValue:[[self.fetchedResultsController fetchedObjects]objectAtIndex:[self.picker selectedRowInComponent:0]] forKey:@"hasCategory"];
-        
-        NSError *error = nil;
-        
-        if ([self.managedObjectContext save:&error]) {
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
-        } else
-        {
-            if (error) {
-                
-                NSLog(@"Unable to save record.");
-                NSLog(@"%@, %@", error, error.localizedDescription);
-            }
-            
-            [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your Point Of Interest could not be saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+ {
+ 
+     NSString *description = self.detailTextField.text;
+ 
+     if (!(description && description.length))
+     {
+         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Please enter a description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+         [alert show];
+         NSLog(@"What is going on here?");
+ 
+     }
+     else
+     {
+         [self.fetchedObject setValue:description forKey:@"customDescription"];
+ 
+         self.dateCreated = [NSDate date];
+ 
+         [self.fetchedObject setValue:self.dateCreated forKey:@"dateSaved"];
+         [self.fetchedObject setValue:self.name forKey:@"name"];
+         [self.fetchedObject setValue:[NSNumber numberWithBool:self.geoSwitch.isOn] forKey:@"geoAlert"];
+ 
+         [self.fetchedObject setValue:[[self.fetchedResultsController fetchedObjects]objectAtIndex:[self.picker selectedRowInComponent:0]] forKey:@"hasCategory"];
+ 
+         NSManagedObjectID *recordID = [self.fetchedObject objectID];
+ 
+         NSURL *url = [recordID URIRepresentation];
+ 
+         self.urlObjectIDToBePassed = url;
+ 
+         
+         NSError *error = nil;
+ 
+         if ([self.managedObjectContext save:&error]) {
+             
+             [self performSegueWithIdentifier:@"segueAfterSaving" sender:self];
+ 
+         } else
+         {
+ 
+             if (error) {
+ 
+                 NSLog(@"Unable to save record.");
+                 NSLog(@"%@, %@", error, error.localizedDescription);
+ 
+             }
+ 
+             [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your Point Of Interest could not be saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
         }
-        
-        
-    } else
-    {
-        [[[UIAlertView alloc]initWithTitle:@"Warning" message:@"Please enter a description" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
-    }
+     }
 }
-*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -209,7 +247,7 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+ 
     if ([segue.identifier isEqualToString:@"editCategory"])
     {
         EditCategoryViewController * destinationCategoryViewController = (EditCategoryViewController*)[segue destinationViewController];
@@ -217,12 +255,15 @@
     } else if ([segue.identifier isEqualToString:@"segueAfterSaving"])
     {
         SavedDetailViewController *destinationVC = (SavedDetailViewController*)[segue destinationViewController];
-        destinationVC.passedName = self.name;
+        
+        destinationVC.urlForObjectID = self.urlObjectIDToBePassed;
         destinationVC.managedObjectContext = self.managedObjectContext;
+    } else if ([segue.identifier isEqualToString:@"segueAfterDeleting"])
+    {
+        ListTabBarViewController * tabVC = (ListTabBarViewController*)[segue destinationViewController];
+        tabVC.managedObjectContext = self.managedObjectContext;
     }
     
 }
-
-
 
 @end
