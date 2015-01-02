@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic, strong) IBOutlet UILabel *Title;
+@property (nonatomic, strong) IBOutlet UILabel *titleBody;
 @property (nonatomic, strong) IBOutlet UIButton *urlButton;
 @property (nonatomic, strong) IBOutlet UILabel *categoryLabel;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionTextLabel;

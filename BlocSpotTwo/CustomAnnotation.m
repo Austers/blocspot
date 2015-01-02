@@ -31,7 +31,7 @@
     annotationView.canShowCallout = YES;
     
     //Have category image
-    annotationView.image = [UIImage imageNamed:@"phonebutton"];
+    annotationView.image = [UIImage imageNamed:@"blackpin"];
     annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
     return annotationView;

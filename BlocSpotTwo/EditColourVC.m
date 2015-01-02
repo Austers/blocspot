@@ -76,14 +76,13 @@
     EditExistingViewController *editExistingVC = (EditExistingViewController *)[segue destinationViewController];
     
     editExistingVC.managedObjectContext = self.managedObjectContext;
-    
     editExistingVC.passedText = self.categoryNameTemp;
-    
     editExistingVC.buttonColour = [self.colourArray objectAtIndex:colourRow];
-    editExistingVC.rememberOriginalURL = self.rememberOriginalURL;
-    editExistingVC.detailText = self.detailText;
-    editExistingVC.name = self.name;
-    editExistingVC.category = self.category;
+    editExistingVC.urlObjectID = self.urlObjectID;
+    //editExistingVC.rememberOriginalURL = self.rememberOriginalURL;
+  //  editExistingVC.detailText = self.detailText;
+   // editExistingVC.name = self.name;
+  //editExistingVC.category = self.category;
     
 }
 

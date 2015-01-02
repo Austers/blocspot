@@ -176,17 +176,19 @@
         if (self.selection) {
             NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:self.selection];
             
+            NSManagedObjectID *recordID = [record objectID];
+            
+            NSURL *url = [recordID URIRepresentation];
+            
             if (record) {
                 destinationVC.passedText = [record valueForKey:@"name"];
                 destinationVC.buttonColour = [record valueForKey:@"colour"];
                 destinationVC.record = record;
-                destinationVC.rememberOriginalURL = self.rememberOriginalURL;
-                destinationVC.detailText = self.detailText;
-                destinationVC.name = self.name;
-                destinationVC.category = self.category;
+                destinationVC.urlObjectID = url;
+               
             }
 
-            //[self setSelection:nil];
+            [self setSelection:nil];
         }
     }
 }

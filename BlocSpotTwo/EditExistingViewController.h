@@ -22,11 +22,7 @@
 
 @property (nonatomic, strong) UIColor *buttonColour;
 @property (nonatomic, strong) NSString *passedText;
-@property (nonatomic, strong) NSURL *urlObjectIDToBePassed;
-@property (nonatomic, strong) NSURL *rememberOriginalURL;
+@property (nonatomic, strong) NSURL *urlObjectID;
 
-@property (nonatomic, strong) NSString *detailText;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *category;
 
 @end

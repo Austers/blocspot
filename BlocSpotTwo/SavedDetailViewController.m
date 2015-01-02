@@ -12,6 +12,7 @@
 
 #import "ListTabBarViewController.h"
 #import "EditPOIViewController.h"
+#import "CustomAnnotation.h"
 
 @interface SavedDetailViewController () <NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
@@ -51,7 +52,7 @@
     self.navigationItem.leftBarButtonItem = self.listButton;
     self.navigationItem.rightBarButtonItem = self.editButton;
     
-    self.Title.text = self.name;
+    self.title = self.name;
     
     if (self.phone.length == 0) {
         self.phoneButton.enabled = NO;
@@ -69,6 +70,7 @@
         [self.urlButton setBackgroundImage:[UIImage imageNamed:@"domainbutton"] forState:UIControlStateNormal];
     }
     
+    self.titleBody.text = self.name;
     self.categoryLabel.text = self.category;
     self.categoryLabel.textColor = [UIColor whiteColor];
     self.descriptionTextLabel.text = self.descriptionText;
@@ -131,6 +133,7 @@
     self.category = (NSString *)[[self.fetchedObject valueForKey:@"hasCategory"]valueForKey:@"name"];
     self.categoryUppercase = [self.category uppercaseString];
     self.categoryBackgroundColour = (UIColor *)[[self.fetchedObject valueForKey:@"hasCategory"]valueForKey:@"colour"];
+    self.titleBody.text = self.name;
     
     self.visitedSwitch.on = [[self.fetchedObject valueForKey:@"visited"]boolValue];
     
@@ -219,6 +222,52 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(center, meters, meters);
     
     [self.detailMapView setRegion:region animated:YES];
+    
+    [self fetchDataAndCreateAnnotations];
+}
+
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+
+{
+    if([annotation isKindOfClass:[CustomAnnotation class]]) {
+        
+        CustomAnnotation *myLocation = (CustomAnnotation *)annotation;
+        
+        MKAnnotationView * annotationView = [self.detailMapView dequeueReusableAnnotationViewWithIdentifier:@"MyCustomAnnotation"];
+        
+        if (annotationView == nil)
+        {
+            annotationView = myLocation.annotationView;
+        }
+        else
+        {
+            annotationView.annotation = annotation;
+        }
+        //  annotationView.tag = annotationTag;
+        return annotationView;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+-(void) fetchDataAndCreateAnnotations
+{
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.latitude, self.longitude);
+        NSString *title = (NSString *)[self.fetchedObject valueForKey:@"name"];
+        
+        NSManagedObjectID *recordID = [self.fetchedObject objectID];
+        
+        NSURL *url = [recordID URIRepresentation];
+        
+        CustomAnnotation *annotation = [[CustomAnnotation alloc]initWithTitle:title Subtitle:nil Location:coordinate];
+        annotation.urlForObjectID = url;
+        
+      //  [annotations addObject:annotation];
+    
+    [self.detailMapView addAnnotation:annotation];
 }
 
 
