@@ -11,5 +11,6 @@
 @interface ListDistancePOITVC : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *pointOfInterestLabel;
+@property (nonatomic, weak) IBOutlet UILabel *distanceLabel;
 
 @end

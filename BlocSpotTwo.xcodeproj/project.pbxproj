@@ -32,6 +32,7 @@
 		136866541A3E853900391018 /* CategoryCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 136866531A3E853900391018 /* CategoryCellTableViewCell.m */; };
 		136866571A3FDEDD00391018 /* EditExistingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136866561A3FDEDD00391018 /* EditExistingViewController.m */; };
 		1368665A1A4007D800391018 /* SavedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136866591A4007D800391018 /* SavedDetailViewController.m */; };
+		1372C7451A570C2A0089CCAF /* DistanceCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1372C7441A570C2A0089CCAF /* DistanceCalculator.m */; };
 		13D4496F1A4839650072551E /* ListDistanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D4496E1A4839650072551E /* ListDistanceViewController.m */; };
 		13D449721A4839910072551E /* ListDateAddedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D449711A4839910072551E /* ListDateAddedViewController.m */; };
 		13D449751A483CF10072551E /* ListDatePOITVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D449741A483CF10072551E /* ListDatePOITVC.m */; };
@@ -102,6 +103,8 @@
 		136866561A3FDEDD00391018 /* EditExistingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditExistingViewController.m; path = BlocSpotTwo/EditExistingViewController.m; sourceTree = "<group>"; };
 		136866581A4007D800391018 /* SavedDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SavedDetailViewController.h; path = BlocSpotTwo/SavedDetailViewController.h; sourceTree = "<group>"; };
 		136866591A4007D800391018 /* SavedDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SavedDetailViewController.m; path = BlocSpotTwo/SavedDetailViewController.m; sourceTree = "<group>"; };
+		1372C7431A570C2A0089CCAF /* DistanceCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DistanceCalculator.h; path = BlocSpotTwo/DistanceCalculator.h; sourceTree = "<group>"; };
+		1372C7441A570C2A0089CCAF /* DistanceCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DistanceCalculator.m; path = BlocSpotTwo/DistanceCalculator.m; sourceTree = "<group>"; };
 		13D4496D1A4839650072551E /* ListDistanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListDistanceViewController.h; path = BlocSpotTwo/ListDistanceViewController.h; sourceTree = "<group>"; };
 		13D4496E1A4839650072551E /* ListDistanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListDistanceViewController.m; path = BlocSpotTwo/ListDistanceViewController.m; sourceTree = "<group>"; };
 		13D449701A4839910072551E /* ListDateAddedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListDateAddedViewController.h; path = BlocSpotTwo/ListDateAddedViewController.h; sourceTree = "<group>"; };
@@ -265,6 +268,8 @@
 				13561B751A27D81100C72FEA /* CustomAnnotation.m */,
 				13EA1CF31A24042800E628E9 /* MapViewController.h */,
 				13EA1CF41A24042800E628E9 /* MapViewController.m */,
+				1372C7431A570C2A0089CCAF /* DistanceCalculator.h */,
+				1372C7441A570C2A0089CCAF /* DistanceCalculator.m */,
 			);
 			name = "Map Controllers";
 			path = ..;
@@ -437,6 +442,7 @@
 				133960CE1A4AA9B60051588A /* CustomCategoryView.m in Sources */,
 				13D4496F1A4839650072551E /* ListDistanceViewController.m in Sources */,
 				13D449841A4864AC0072551E /* ColorCollectionViewCell.m in Sources */,
+				1372C7451A570C2A0089CCAF /* DistanceCalculator.m in Sources */,
 				13561B761A27D81100C72FEA /* CustomAnnotation.m in Sources */,
 				13EA1CF51A24042800E628E9 /* MapViewController.m in Sources */,
 				133960D61A4ABFF90051588A /* CustomCategoryTVC.m in Sources */,

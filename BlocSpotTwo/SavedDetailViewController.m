@@ -38,6 +38,8 @@
 
 @property (nonatomic, strong) NSManagedObject *fetchedObject;
 
+@property (nonatomic, weak) IBOutlet UIView *contentView;
+
 @end
 
 @implementation SavedDetailViewController
@@ -45,6 +47,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchPOI];
+    
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeLeading relatedBy:0 toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    
+    [self.view addConstraint:leftConstraint];
+    
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeTrailing relatedBy:0 toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    
+    [self.view addConstraint:rightConstraint];
     
     self.editButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
     self.listButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"listbutton"] style:UIBarButtonItemStylePlain target:self action:@selector(listButtonPressed:)];
@@ -314,7 +324,6 @@
         editVC.name = self.name;
         editVC.category = self.category;
     }
-    
 }
 
 

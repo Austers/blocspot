@@ -10,6 +10,7 @@
 #import "ListTabBarViewController.h"
 #import "ListDatePOITVC.h"
 #import "SavedDetailViewController.h"
+#import "DistanceCalculator.h"
 
 #import <CoreData/CoreData.h>
 
@@ -107,6 +108,17 @@
 {
     NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
+    NSNumber *longNMN = (NSNumber *)[record valueForKey:@"longitude"];
+    double longitude = [longNMN doubleValue];
+    NSNumber *latNSN = (NSNumber *)[record valueForKey:@"latitude"];
+    double latitude = [latNSN doubleValue];
+    
+    CLLocationCoordinate2D savedLocation = CLLocationCoordinate2DMake(latitude, longitude);
+    
+    DistanceCalculator *calculator = [[DistanceCalculator alloc]init];
+    
+    cell.distanceLabel.text = [calculator determineDistanceFromCurrentLocation:savedLocation];
+    
     [cell.pointOfInterestLabel setText:[record valueForKey:@"name"]];
    
     NSString *categoryName = [[record valueForKey:@"hasCategory"]valueForKey:@"name"];
@@ -133,6 +145,10 @@
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 55;
+}
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
