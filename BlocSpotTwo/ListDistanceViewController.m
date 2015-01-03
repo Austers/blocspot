@@ -124,16 +124,21 @@
     NSString *categoryLetter = [categoryName substringToIndex:1];
     categoryLetter = [categoryLetter uppercaseString];
     
+    UIView * categoryView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    categoryView.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
     
-    self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 24, 24)];
     self.categoryLabel.text = categoryLetter;
-    self.categoryLabel.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+    self.categoryLabel.backgroundColor = [UIColor blackColor];
     self.categoryLabel.textColor = [UIColor whiteColor];
     self.categoryLabel.textAlignment = NSTextAlignmentCenter;
-    self.categoryLabel.font = [UIFont systemFontOfSize:24];
+    self.categoryLabel.font = [UIFont systemFontOfSize:20];
     
+    [categoryView addSubview:self.categoryLabel];
     
-    cell.accessoryView = self.categoryLabel;
+    self.categoryLabel.center = CGPointMake(categoryView.frame.size.width / 2, categoryView.frame.size.height / 2);
+    
+    cell.accessoryView = categoryView;
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
 }

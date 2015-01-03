@@ -62,20 +62,14 @@
 -(void)changeConstraints
 {
     [self viewDidLoad];
-    NSLog(@"button hit");
 }
 
 
 -(void)didSelectCell:(NSIndexPath *)selectedIndexPath
 {
     self.categoryviewConstraintRightPosition.constant = -self.categoryView.frame.size.width;
-    NSLog(@"Just checking");
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -147,15 +141,21 @@
     NSString *categoryLetter = [categoryName substringToIndex:1];
     categoryLetter = [categoryLetter uppercaseString];
     
-    self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIView * categoryView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    categoryView.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+    
+    self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 24, 24)];
     self.categoryLabel.text = categoryLetter;
-    self.categoryLabel.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+    self.categoryLabel.backgroundColor = [UIColor blackColor];
     self.categoryLabel.textColor = [UIColor whiteColor];
     self.categoryLabel.textAlignment = NSTextAlignmentCenter;
-    self.categoryLabel.font = [UIFont systemFontOfSize:24];
+    self.categoryLabel.font = [UIFont systemFontOfSize:20];
     
-    cell.accessoryView = self.categoryLabel;
-     
+    [categoryView addSubview:self.categoryLabel];
+    
+    self.categoryLabel.center = CGPointMake(categoryView.frame.size.width / 2, categoryView.frame.size.height / 2);
+    
+    cell.accessoryView = categoryView;
 
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
