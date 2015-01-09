@@ -13,7 +13,7 @@
 
 @protocol CustomCategoryDelegate <NSObject>
 
--(void) didSelectCell:(NSIndexPath *)selectedIndexPath;
+-(void) didSelectCategory:(NSString *)categoryName;
 
 @end
 

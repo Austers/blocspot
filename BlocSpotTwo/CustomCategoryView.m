@@ -73,10 +73,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+    NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    [self.delegate didSelectCell:indexPath];
+    NSString *categoryName = [record valueForKey:@"name"];
+    
+    [self.delegate didSelectCategory:categoryName];
+    
+    //NSDictionary *selectionInfo = [NSDictionary dictionaryWithObject:categoryName forKey:@"categoryName"];
+    
+    //[[NSNotificationCenter defaultCenter]postNotificationName:@"CategorySelected" object:self userInfo:selectionInfo];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     
 }
 

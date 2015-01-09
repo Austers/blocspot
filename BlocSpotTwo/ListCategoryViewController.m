@@ -23,13 +23,20 @@
 
 @property (nonatomic, strong) UILabel *categoryLabel;
 
+@property (nonatomic, strong) NSString *selectedCategoryName;
+
 @end
 
 @implementation ListCategoryViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
  
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
+    //[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reorderTable:) name:@"CategorySelected" object:nil];
+    
     // set delegate
     self.categoryView.delegate = self;
     
@@ -40,9 +47,28 @@
     ListTabBarViewController *tabController = (ListTabBarViewController *)self.tabBarController;
     self.managedObjectContext = tabController.managedObjectContext;
     
+    [self fetchData];
+}
+
+
+-(void)fetchData
+{
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"PointOfInterest"];
     
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"hasCategory.name" ascending:NO]]];
+    
+    
+    if (self.selectedCategoryName == nil) {
+        NSLog(@"No name");
+        
+    } else
+        
+    {
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@", @"hasCategory.name", self.selectedCategoryName];
+        [fetchRequest setPredicate:predicate];
+        
+    }
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     
@@ -56,7 +82,9 @@
         NSLog(@"Unable to perform fetch");
         NSLog(@"%@, %@", error, error.localizedDescription);
     }
+
 }
+
 
 
 -(void)changeConstraints
@@ -64,10 +92,13 @@
     [self viewDidLoad];
 }
 
-
--(void)didSelectCell:(NSIndexPath *)selectedIndexPath
+-(void)didSelectCategory:(NSString *)categoryName
 {
+    NSLog(@"Row selected is %@", categoryName);
+    self.selectedCategoryName = categoryName;
     self.categoryviewConstraintRightPosition.constant = -self.categoryView.frame.size.width;
+    [self fetchData];
+    [self.mainTableview reloadData];
 }
 
 
