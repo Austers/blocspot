@@ -14,6 +14,7 @@
 #import <CoreData/CoreData.h>
 #import "ListTabBarViewController.h"
 #import "SavedDetailViewController.h"
+#import "DistanceCalculator.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, NSFetchedResultsControllerDelegate>
 
@@ -22,6 +23,11 @@
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, strong) NSURL *urlForObjectID;
+
+@property (nonatomic, strong) CLLocation *closestLocation;
+@property (nonatomic, assign) double latitude;
+@property (nonatomic, assign) double longitude;
+@property (nonatomic, strong) NSMutableArray *locationsArray;
 
 @end
 
@@ -45,6 +51,8 @@
     self.title = @"Map";
     
     self.mapView.delegate = self;
+    
+    self.locationsArray = [[NSMutableArray alloc]init];
     
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.delegate = self;
@@ -86,6 +94,7 @@
         double longitude = [longNMN doubleValue];
         NSNumber *latNSN = (NSNumber *)[object valueForKey:@"latitude"];
         double latitude = [latNSN doubleValue];
+        
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
         NSString *title = (NSString *)[object valueForKey:@"name"];
         
@@ -144,11 +153,39 @@
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    CLLocationCoordinate2D coord = self.mapView.userLocation.location.coordinate;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 1000.0, 1000.0);
+   // CLLocationCoordinate2D coord = self.mapView.userLocation.location.coordinate;
+   // MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 1000.0, 1000.0);
+   // CLLocation *resultLocation = [[CLLocation alloc]initWithLatitude:self.latitude longitude:self.longitude];
+    
+    
+    for (NSManagedObject *object in [[self fetchedResultsController]fetchedObjects])
+    {
+        NSNumber *longNMN = (NSNumber *)[object valueForKey:@"longitude"];
+        double longitude = [longNMN doubleValue];
+        NSNumber *latNSN = (NSNumber *)[object valueForKey:@"latitude"];
+        double latitude = [latNSN doubleValue];
+        
+        CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
+    
+        [self.locationsArray addObject:location];
+    }
+    
+    NSLog(@"%@", self.locationsArray);
+    
+    DistanceCalculator *calculator = [[DistanceCalculator alloc]init];
+    
+     self.closestLocation = [calculator determineClosestLocationFromArrayOfLocations:self.locationsArray];
+
+    self.latitude = self.closestLocation.coordinate.latitude;
+    self.longitude = self.closestLocation.coordinate.longitude;
+    
+    CLLocationDistance meters = [userLocation.location distanceFromLocation:self.closestLocation];
+    
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(((self.latitude + userLocation.location.coordinate.latitude)/2), ((self.longitude + userLocation.location.coordinate.longitude)/2));
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(center, meters, meters);
     
     [self.mapView setRegion:region animated:YES];
-    
     [self fetchDataAndCreateAnnotations];
 
 }

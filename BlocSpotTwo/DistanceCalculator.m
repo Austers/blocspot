@@ -49,4 +49,38 @@
     return distance;
 }
 
+-(CLLocation *)determineClosestLocationFromArrayOfLocations:(NSArray *)arrayOfLocations
+{
+  
+    NSMutableArray *locationsByDistance = [[NSMutableArray alloc]init];
+    CLLocation *currentLocation = [[CLLocation alloc]initWithLatitude:self.currentLatitude longitude:self.currentLongitude];
+    
+    for (CLLocation *location in arrayOfLocations) {
+        
+        CLLocationDistance meters = [currentLocation distanceFromLocation:location];
+        
+        NSNumber *distance = [NSNumber numberWithDouble:meters];
+        
+        NSDictionary *locationAndAssociatedCurrentDistance = [[NSDictionary alloc]initWithObjectsAndKeys:distance, @"distance", location, @"location", nil];
+        
+        [locationsByDistance addObject:locationAndAssociatedCurrentDistance];
+    }
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
+    
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSArray *sortedArray = [locationsByDistance sortedArrayUsingDescriptors:sortDescriptors];
+    
+    locationsByDistance = [NSMutableArray arrayWithArray:sortedArray];
+    
+    NSDictionary *closestLocationDictionary = [locationsByDistance objectAtIndex:0];
+    
+    CLLocation *closestLocation = [closestLocationDictionary valueForKey:@"location"];
+    
+    return closestLocation;
+}
+
+
+
 @end

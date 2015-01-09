@@ -13,4 +13,6 @@
 
 -(NSString *)determineDistanceFromCurrentLocation:(CLLocationCoordinate2D)coordinate;
 
+-(CLLocation *)determineClosestLocationFromArrayOfLocations:(NSArray *)arrayOfLocations;
+
 @end
