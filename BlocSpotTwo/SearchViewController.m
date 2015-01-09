@@ -126,15 +126,36 @@
         categoryLetter = [categoryLetter uppercaseString];
         
         
-        self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 65, 65)];
+       // self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 65, 65)];
+        //self.categoryLabel.text = categoryLetter;
+        //self.categoryLabel.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+        //self.categoryLabel.textColor = [UIColor whiteColor];
+        //self.categoryLabel.textAlignment = NSTextAlignmentCenter;
+        //self.categoryLabel.font = [UIFont systemFontOfSize:30];
+        
+
+       
+        
+        UIView * categoryView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 65, 65)];
+        categoryView.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+        
+        UIView *whiteBorder = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 34, 34)];
+        whiteBorder.backgroundColor = [UIColor whiteColor];
+        
+        self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
         self.categoryLabel.text = categoryLetter;
-        self.categoryLabel.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
+        self.categoryLabel.backgroundColor = [UIColor grayColor];
         self.categoryLabel.textColor = [UIColor whiteColor];
         self.categoryLabel.textAlignment = NSTextAlignmentCenter;
         self.categoryLabel.font = [UIFont systemFontOfSize:30];
         
-    
-        cell.accessoryView = self.categoryLabel;
+        [whiteBorder addSubview:self.categoryLabel];
+        [categoryView addSubview:whiteBorder];
+        
+        whiteBorder.center = CGPointMake(categoryView.frame.size.width / 2, categoryView.frame.size.height / 2);
+        self.categoryLabel.center = CGPointMake(whiteBorder.frame.size.width / 2, whiteBorder.frame.size.height / 2);
+        
+        cell.accessoryView = categoryView;
         cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.detailTextLabel.text = @"";
         

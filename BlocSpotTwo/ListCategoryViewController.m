@@ -144,19 +144,23 @@
     UIView * categoryView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     categoryView.backgroundColor = [[record valueForKey:@"hasCategory"]valueForKey:@"colour"];
     
-    self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 24, 24)];
+    UIView *whiteBorder = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 24, 24)];
+    whiteBorder.backgroundColor = [UIColor whiteColor];
+    
+    self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     self.categoryLabel.text = categoryLetter;
-    self.categoryLabel.backgroundColor = [UIColor blackColor];
+    self.categoryLabel.backgroundColor = [UIColor grayColor];
     self.categoryLabel.textColor = [UIColor whiteColor];
     self.categoryLabel.textAlignment = NSTextAlignmentCenter;
     self.categoryLabel.font = [UIFont systemFontOfSize:20];
     
-    [categoryView addSubview:self.categoryLabel];
+    [whiteBorder addSubview:self.categoryLabel];
+    [categoryView addSubview:whiteBorder];
     
-    self.categoryLabel.center = CGPointMake(categoryView.frame.size.width / 2, categoryView.frame.size.height / 2);
+    whiteBorder.center = CGPointMake(categoryView.frame.size.width / 2, categoryView.frame.size.height / 2);
+    self.categoryLabel.center = CGPointMake(whiteBorder.frame.size.width / 2, whiteBorder.frame.size.height / 2);
     
     cell.accessoryView = categoryView;
-
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
 }
