@@ -14,7 +14,7 @@
 #import "EditPOIViewController.h"
 #import "CustomAnnotation.h"
 
-@interface SavedDetailViewController () <NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
+@interface SavedDetailViewController () <NSFetchedResultsControllerDelegate, UIAlertViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) UIBarButtonItem *editButton;
 @property (nonatomic, strong) UIBarButtonItem *listButton;
@@ -326,5 +326,31 @@
     }
 }
 
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    [[[UIAlertView alloc]initWithTitle:@"BOOM!" message:@"You have successfully detected ENTERING the region using geolocation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    [[[UIAlertView alloc]initWithTitle:@"BOOM!" message:@"You have successfully detected EXITING the region using geolocation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+      didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+{
+    switch (state) {
+        case CLRegionStateInside:
+            NSLog(@"INSIDE the Region");//not logging
+            break;
+        case CLRegionStateOutside:
+            NSLog(@"OUTSIDE the Region");
+            break;
+        case CLRegionStateUnknown:
+        default:
+            NSLog(@"Region state UNKNOWN!!!"); //Logging on console
+            break;
+    }
+}
 
 @end

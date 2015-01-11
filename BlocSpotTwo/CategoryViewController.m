@@ -155,7 +155,7 @@
             
             if (self.geoSwitch.isOn == YES) {
                 self.poiLocation = CLLocationCoordinate2DMake(self.latitude, self.longitude);
-                CLCircularRegion *regionToMonitor = [[CLCircularRegion alloc]initWithCenter:self.poiLocation radius:250.0 identifier:[[NSUUID UUID]UUIDString]];
+                CLCircularRegion *regionToMonitor = [[CLCircularRegion alloc]initWithCenter:self.poiLocation radius:3000.0 identifier:[[NSUUID UUID]UUIDString]];
                 [record setValue:regionToMonitor forKey:@"region"];
             }
              

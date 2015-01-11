@@ -12,6 +12,7 @@
 #import "SavedDetailViewController.h"
 
 #import <CoreData/CoreData.h>
+#import <Parse/Parse.h>
 
 @interface SearchViewController () <DataSourceDelegate, NSFetchedResultsControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -42,6 +43,10 @@
     self.title = @"Search";
     
     [self populateSavedLocations];
+    
+    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    testObject[@"foo"] = @"bar";
+    [testObject saveInBackground];
     
 }
 

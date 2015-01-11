@@ -10,12 +10,12 @@
 #import "MapViewController.h"
 
 #import <CoreData/CoreData.h>
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-//@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSMutableArray *regionArray;
 
 @end
@@ -71,6 +71,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    // [Optional] Power your app with Local Datastore. For more info, go to
+    // https://parse.com/docs/ios_guide#localdatastore/iOS
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"GiAyQRmBg8IvimdFQFdDBguF7hNaLAQh1Xkkz37H"
+                  clientKey:@"FTMFzQAL1bhJykbh9cSJ9JHolTC5SFg0yKySSCfx"];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     NSArray *dataTest = [self testForData];
     
     if ([dataTest count] == 0) {
@@ -78,8 +89,8 @@
         NSLog(@"%@", dataTest);
     }
     
-    [self fetchRegionData];
     [self locationManagerSetup];
+    [self fetchRegionData];
     
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
@@ -91,6 +102,11 @@
 
 -(void)locationManagerSetup
 {
+    
+    if (![CLLocationManager locationServicesEnabled]) {
+        return;
+    }
+    
     if (self.locationManager == nil) {
         self.locationManager = [[CLLocationManager alloc]init];
         self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
@@ -98,7 +114,8 @@
         
         self.locationManager.delegate = self;
         
-        [self.locationManager stopUpdatingLocation];
+        [self.locationManager startUpdatingLocation];
+       // [self.locationManager stopUpdatingLocation];
         
     }
     
@@ -106,10 +123,12 @@
 
 -(void)fetchRegionData
 {
+    self.regionArray = [[NSMutableArray alloc]init];
+    
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"PointOfInterest" inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
-    //[request setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"dateSaved" ascending:YES]]];
+    [request setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"dateSaved" ascending:YES]]];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"geoAlert == 1"];
     [request setPredicate:predicate];
@@ -125,7 +144,7 @@
     
     for (NSManagedObject *object in array)
     {
-        CLRegion *region = (CLRegion *)[object valueForKey:@"region"];
+        CLCircularRegion *region = (CLCircularRegion *)[object valueForKey:@"region"];
         
         [self.locationManager startMonitoringForRegion:region];
         [self.regionArray addObject:region];
@@ -191,23 +210,17 @@
     }
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    CLLocation *location = [locations lastObject];
-    
-    NSLog(@"Incoming alert %+.6f %+.6f", location.coordinate.latitude, location.coordinate.longitude);
-}
-
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    [[[UIAlertView alloc]initWithTitle:@"BOOM!" message:@"You have successfully detected ENTERING the region using geolocation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+    NSLog(@"Have entered %@",region);
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    [[[UIAlertView alloc]initWithTitle:@"BOOM!" message:@"You have successfully detected EXITING the region using geolocation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
+    NSLog(@"Have left %@",region);
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

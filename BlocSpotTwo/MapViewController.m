@@ -38,9 +38,7 @@
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        // load an instance of your xib into a uiview
-        
-        // then add that ui view into self, i.e [self addSubview:some_view_name]
+        //
     }
     return self;
 }
@@ -61,8 +59,6 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager startUpdatingLocation];
-    
-    NSLog(@" Managed Object Context is: %@", self.managedObjectContext);
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"PointOfInterest"];
     
@@ -113,12 +109,9 @@
 
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
-        
-        {
+{
             if([annotation isKindOfClass:[CustomAnnotation class]]) {
-             
             CustomAnnotation *myLocation = (CustomAnnotation *)annotation;
-            
             MKAnnotationView * annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"MyCustomAnnotation"];
             
             if (annotationView == nil)
@@ -148,16 +141,8 @@
 
 
 
-//Show annotation automatically
-
-
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-   // CLLocationCoordinate2D coord = self.mapView.userLocation.location.coordinate;
-   // MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 1000.0, 1000.0);
-   // CLLocation *resultLocation = [[CLLocation alloc]initWithLatitude:self.latitude longitude:self.longitude];
-    
-    
     for (NSManagedObject *object in [[self fetchedResultsController]fetchedObjects])
     {
         NSNumber *longNMN = (NSNumber *)[object valueForKey:@"longitude"];
@@ -169,8 +154,6 @@
     
         [self.locationsArray addObject:location];
     }
-    
-    NSLog(@"%@", self.locationsArray);
     
     DistanceCalculator *calculator = [[DistanceCalculator alloc]init];
     
@@ -189,14 +172,6 @@
     [self fetchDataAndCreateAnnotations];
 
 }
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - Navigation
 
