@@ -98,7 +98,7 @@
         
         NSURL *url = [recordID URIRepresentation];
         
-        CustomAnnotation *annotation = [[CustomAnnotation alloc]initWithTitle:title Subtitle:nil Location:coordinate];
+        CustomAnnotation *annotation = [[CustomAnnotation alloc] initWithTitle:title Subtitle:nil Location:coordinate];
         annotation.urlForObjectID = url;
         
         [annotations addObject:annotation];
@@ -110,34 +110,43 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-            if([annotation isKindOfClass:[CustomAnnotation class]]) {
-            CustomAnnotation *myLocation = (CustomAnnotation *)annotation;
-            MKAnnotationView * annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"MyCustomAnnotation"];
-            
-            if (annotationView == nil)
-            {
-                annotationView = myLocation.annotationView;
-            }
-            else
-            {
-                annotationView.annotation = annotation;
-            }
-          //  annotationView.tag = annotationTag;
-            return annotationView;
-            }
-            else
-            {
-                return nil;
-            }
+    if([annotation isKindOfClass:[CustomAnnotation class]])
+    {
+        CustomAnnotation *myLocation = (CustomAnnotation *)annotation;
+        MKAnnotationView * annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:@"MyCustomAnnotation"];
+    
+        if (annotationView == nil)
+        {
+            annotationView = myLocation.annotationView;
+        }
+        else
+        {
+            annotationView.annotation = annotation;
+        }
+      //  annotationView.tag = annotationTag;
+        return annotationView;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
-- (void)mapView:(MKMapView *)mapView annotationView:(CustomAnnotation *)view calloutAccessoryControlTapped:(UIControl *)control {
-    // Go to edit view
-    self.urlForObjectID = view.urlForObjectID;
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    CustomAnnotation* customView = (CustomAnnotation*)(view);
+    self.urlForObjectID = customView.urlForObjectID;
     NSLog(@"Hit");
     [self performSegueWithIdentifier:@"savedDetailView" sender:self];
-    
 }
+
+//- (void)mapView:(MKMapView *)mapView annotationView:(CustomAnnotation *)view calloutAccessoryControlTapped:(UIControl *)control {
+//    // Go to edit view
+//    self.urlForObjectID = view.urlForObjectID;
+//    NSLog(@"Hit");
+//    [self performSegueWithIdentifier:@"savedDetailView" sender:self];
+//    
+//}
 
 
 

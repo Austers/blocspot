@@ -207,20 +207,7 @@
 		136663291A10A709003D9F49 = {
 			isa = PBXGroup;
 			children = (
-				13B8E7651A628C19003B2F8A /* AudioToolbox.framework */,
-				13B8E7661A628C19003B2F8A /* CFNetwork.framework */,
-				13B8E7671A628C19003B2F8A /* CoreGraphics.framework */,
-				13B8E7681A628C19003B2F8A /* CoreLocation.framework */,
-				13B8E7691A628C19003B2F8A /* libsqlite3.dylib */,
-				13B8E76A1A628C19003B2F8A /* libz.dylib */,
-				13B8E76B1A628C19003B2F8A /* MobileCoreServices.framework */,
-				13B8E76C1A628C19003B2F8A /* QuartzCore.framework */,
-				13B8E76D1A628C19003B2F8A /* Security.framework */,
-				13B8E76E1A628C19003B2F8A /* StoreKit.framework */,
-				13B8E76F1A628C19003B2F8A /* SystemConfiguration.framework */,
-				13B8E7611A628B6E003B2F8A /* Bolts.framework */,
-				13B8E7621A628B6E003B2F8A /* Parse.framework */,
-				1366635B1A12047C003D9F49 /* MapKit.framework */,
+				13B8E77B1A62E24A003B2F8A /* Libraries */,
 				136663341A10A709003D9F49 /* BlocSpotTwo */,
 				1366634E1A10A709003D9F49 /* BlocSpotTwoTests */,
 				136663331A10A709003D9F49 /* Products */,
@@ -279,6 +266,27 @@
 				136663501A10A709003D9F49 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13B8E77B1A62E24A003B2F8A /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				13B8E7651A628C19003B2F8A /* AudioToolbox.framework */,
+				13B8E7661A628C19003B2F8A /* CFNetwork.framework */,
+				13B8E7671A628C19003B2F8A /* CoreGraphics.framework */,
+				13B8E7681A628C19003B2F8A /* CoreLocation.framework */,
+				13B8E7691A628C19003B2F8A /* libsqlite3.dylib */,
+				13B8E76A1A628C19003B2F8A /* libz.dylib */,
+				13B8E76B1A628C19003B2F8A /* MobileCoreServices.framework */,
+				13B8E76C1A628C19003B2F8A /* QuartzCore.framework */,
+				13B8E76D1A628C19003B2F8A /* Security.framework */,
+				13B8E76E1A628C19003B2F8A /* StoreKit.framework */,
+				13B8E76F1A628C19003B2F8A /* SystemConfiguration.framework */,
+				13B8E7611A628B6E003B2F8A /* Bolts.framework */,
+				13B8E7621A628B6E003B2F8A /* Parse.framework */,
+				1366635B1A12047C003D9F49 /* MapKit.framework */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 		13D449621A471A1F0072551E /* Category Classes */ = {
