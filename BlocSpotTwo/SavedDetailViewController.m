@@ -139,6 +139,28 @@
     [MKMapItem openMapsWithItems:[NSArray arrayWithObject:resultItem] launchOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSValue valueWithMKCoordinate:self.mapRegion.center], MKLaunchOptionsMapCenterKey, [NSValue valueWithMKCoordinateSpan:self.mapRegion.span], MKLaunchOptionsMapSpanKey, nil]];
 }
 
+-(IBAction)shareButtonPressed:(id)sender
+{
+    NSString *sharingString = self.title;
+    NSString *phoneToShare = [[NSString alloc]init];
+    NSString *urlToShare = [[NSString alloc]init];
+    
+    if (self.phone.length) {
+        phoneToShare = self.phone;
+    }
+    if (self.url) {
+        urlToShare = self.url;
+    }
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:@[sharingString, phoneToShare, urlToShare] applicationActivities:nil];
+    
+    
+    [self presentViewController:activityVC animated:YES completion:^{
+        NSLog(@"Share test");
+    }];
+    
+}
+
 -(void)fetchPOI
 {
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
