@@ -33,22 +33,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
-    //[[NSNotificationCenter defaultCenter] removeObserver:self];
-    //[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reorderTable:) name:@"CategorySelected" object:nil];
+ // set delegate
     
-    // set delegate
     self.categoryView.delegate = self;
     
-    // set position to 0
+   // self.categoryviewConstraintRightPosition.constant = 0;
     
-    self.categoryviewConstraintRightPosition.constant = 0;
+    [UIView animateWithDuration:0.8 animations:^{
+        self.categoryView.alpha = 1.0;
+    }];
+    
     
     ListTabBarViewController *tabController = (ListTabBarViewController *)self.tabBarController;
+    
     self.managedObjectContext = tabController.managedObjectContext;
     
     [self fetchData];
 }
+
 
 
 -(void)fetchData
@@ -96,7 +98,12 @@
 {
     NSLog(@"Row selected is %@", categoryName);
     self.selectedCategoryName = categoryName;
-    self.categoryviewConstraintRightPosition.constant = -self.categoryView.frame.size.width;
+    
+  [UIView animateWithDuration:0.8 animations:^{
+      self.categoryView.center = CGPointMake(self.view.frame.size.width + (self.categoryView.frame.size.width / 2), (self.view.frame.size.height - (self.categoryView.frame.size.height / 2) - 74));
+  }];
+    
+    //self.categoryviewConstraintRightPosition.constant = -self.categoryView.frame.size.width;
     [self fetchData];
     [self.mainTableview reloadData];
 }

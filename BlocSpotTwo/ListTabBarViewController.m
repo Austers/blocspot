@@ -45,6 +45,7 @@
 {
     if ([viewController isKindOfClass:[ListCategoryViewController class]]) {
         [(ListCategoryViewController *) viewController changeConstraints];
+        NSLog(@"Hit");
     }
 }
 

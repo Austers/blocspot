@@ -80,10 +80,6 @@
     
     [self.delegate didSelectCategory:categoryName];
     
-    //NSDictionary *selectionInfo = [NSDictionary dictionaryWithObject:categoryName forKey:@"categoryName"];
-    
-    //[[NSNotificationCenter defaultCenter]postNotificationName:@"CategorySelected" object:self userInfo:selectionInfo];
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }

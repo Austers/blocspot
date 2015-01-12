@@ -22,5 +22,5 @@
 
 @property (nonatomic, strong) IBOutlet CustomCategoryView *categoryView;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryviewConstraintRightPosition;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryviewConstraintRightPosition;
 @end
