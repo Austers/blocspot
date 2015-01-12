@@ -12,7 +12,7 @@
 #import <CoreData/CoreData.h>
 #import <Parse/Parse.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -92,6 +92,16 @@
     [self locationManagerSetup];
     [self fetchRegionData];
     
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     MapViewController *mapVC = (MapViewController *)navigationController.topViewController;
@@ -210,15 +220,38 @@
     }
 }
 
-
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
     NSLog(@"Have entered %@",region);
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    if (notification == nil)
+        return;
+    notification.alertBody = [NSString stringWithFormat:@"Detected entering region"];
+    notification.alertAction = @"Congratulate yourself";
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.applicationIconBadgeNumber = 1;
+    
+    [[UIApplication sharedApplication]presentLocalNotificationNow:notification];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     NSLog(@"Have left %@",region);
+   
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    if (notification == nil)
+        return;
+    notification.alertBody = [NSString stringWithFormat:@"Detected exiting region"];
+    notification.alertAction = @"Congratulate yourself";
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.applicationIconBadgeNumber = 1;
+    
+    [[UIApplication sharedApplication]presentLocalNotificationNow:notification];
 }
 
 

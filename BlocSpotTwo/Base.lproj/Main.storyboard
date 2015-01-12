@@ -998,6 +998,9 @@
                                                         <state key="normal" title="Navigate">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="navigateButtonPressed:" destination="VaG-C8-SsB" eventType="touchUpInside" id="1Fu-Jp-8Cd"/>
+                                                        </connections>
                                                     </button>
                                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m6t-0f-p4R">
                                                         <rect key="frame" x="0.0" y="0.0" width="584" height="209"/>

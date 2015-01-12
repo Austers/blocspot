@@ -14,7 +14,9 @@
 #import "EditPOIViewController.h"
 #import "CustomAnnotation.h"
 
-@interface SavedDetailViewController () <NSFetchedResultsControllerDelegate, UIAlertViewDelegate, CLLocationManagerDelegate>
+#import <CoreLocation/CoreLocation.h>
+
+@interface SavedDetailViewController () <NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIBarButtonItem *editButton;
 @property (nonatomic, strong) UIBarButtonItem *listButton;
@@ -39,6 +41,9 @@
 @property (nonatomic, strong) NSManagedObject *fetchedObject;
 
 @property (nonatomic, weak) IBOutlet UIView *contentView;
+@property (nonatomic, strong) CLLocationManager *listenForBoundaries;
+
+@property (nonatomic, assign) MKCoordinateRegion mapRegion;
 
 @end
 
@@ -47,6 +52,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchPOI];
+    
+    self.listenForBoundaries = [[CLLocationManager alloc]init];
+    self.listenForBoundaries.delegate = self;
     
     NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeLeading relatedBy:0 toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
     
@@ -122,6 +130,14 @@
     [self performSegueWithIdentifier:@"showTabVC" sender:self];
 }
 
+-(IBAction)navigateButtonPressed:(id)sender
+{
+    MKPlacemark *resultPlacemark = [[MKPlacemark alloc]initWithCoordinate:CLLocationCoordinate2DMake(self.latitude, self.longitude) addressDictionary:nil];
+    
+    MKMapItem *resultItem = [[MKMapItem alloc]initWithPlacemark:resultPlacemark];
+    
+    [MKMapItem openMapsWithItems:[NSArray arrayWithObject:resultItem] launchOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSValue valueWithMKCoordinate:self.mapRegion.center], MKLaunchOptionsMapCenterKey, [NSValue valueWithMKCoordinateSpan:self.mapRegion.span], MKLaunchOptionsMapSpanKey, nil]];
+}
 
 -(void)fetchPOI
 {
@@ -229,9 +245,9 @@
     
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(((self.latitude + userLocation.location.coordinate.latitude)/2), ((self.longitude + userLocation.location.coordinate.longitude)/2));
     
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(center, meters, meters);
+    self.mapRegion = MKCoordinateRegionMakeWithDistance(center, meters, meters);
     
-    [self.detailMapView setRegion:region animated:YES];
+    [self.detailMapView setRegion:self.mapRegion animated:YES];
     
     [self fetchDataAndCreateAnnotations];
 }
@@ -328,6 +344,9 @@
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
+    
+    NSLog(@"calling the delegate method");
+    
     [[[UIAlertView alloc]initWithTitle:@"BOOM!" message:@"You have successfully detected ENTERING the region using geolocation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
 }
 
@@ -335,11 +354,12 @@
 {
     [[[UIAlertView alloc]initWithTitle:@"BOOM!" message:@"You have successfully detected EXITING the region using geolocation" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil]show];
 }
-
+/*
 - (void)locationManager:(CLLocationManager *)manager
       didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
     switch (state) {
+ 
         case CLRegionStateInside:
             NSLog(@"INSIDE the Region");//not logging
             break;
@@ -352,5 +372,6 @@
             break;
     }
 }
+ */
 
 @end

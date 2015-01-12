@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface SavedDetailViewController : UIViewController
+@interface SavedDetailViewController : UIViewController <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) NSDate *dateCreated;
 

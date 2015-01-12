@@ -30,8 +30,6 @@
 	<string>This is required to determine your current location</string>
 	<key>NSLocationUsageDescription</key>
 	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This is required to determine your current location</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
