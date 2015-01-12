@@ -37,20 +37,21 @@
     
     self.categoryView.delegate = self;
     
-   // self.categoryviewConstraintRightPosition.constant = 0;
+    self.categoryView.frame = CGRectMake(self.view.frame.size.width - self.categoryView.frame.size.width, self.view.frame.size.height - self.categoryView.frame.size.height - 74, self.categoryView.frame.size.width, self.categoryView.frame.size.height);
     
-    [UIView animateWithDuration:0.8 animations:^{
+    self.categoryView.alpha = 0.0;
+    
+    [UIView animateWithDuration:0.3 animations:^{
         self.categoryView.alpha = 1.0;
     }];
     
     
     ListTabBarViewController *tabController = (ListTabBarViewController *)self.tabBarController;
-    
     self.managedObjectContext = tabController.managedObjectContext;
     
     [self fetchData];
-}
 
+}
 
 
 -(void)fetchData
@@ -59,17 +60,14 @@
     
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"hasCategory.name" ascending:NO]]];
     
-    
     if (self.selectedCategoryName == nil) {
         NSLog(@"No name");
         
     } else
         
     {
-        
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS[cd] %@", @"hasCategory.name", self.selectedCategoryName];
         [fetchRequest setPredicate:predicate];
-        
     }
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -88,10 +86,26 @@
 }
 
 
-
 -(void)changeConstraints
 {
-    [self viewDidLoad];
+    //[self viewDidLoad];
+    
+    if (self.categoryView.alpha)
+    {
+        NSLog(@"On Screen");
+    } else
+    {
+        NSLog(@"Off screen");
+        
+        self.categoryView.alpha = 0.0;
+        
+        self.categoryView.frame = CGRectMake(self.view.frame.size.width - self.categoryView.frame.size.width, self.view.frame.size.height - self.categoryView.frame.size.height - 74, self.categoryView.frame.size.width, self.categoryView.frame.size.height);
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.categoryView.alpha = 1.0;
+        }];
+    }
+    
 }
 
 -(void)didSelectCategory:(NSString *)categoryName
@@ -99,11 +113,11 @@
     NSLog(@"Row selected is %@", categoryName);
     self.selectedCategoryName = categoryName;
     
-  [UIView animateWithDuration:0.8 animations:^{
+  [UIView animateWithDuration:0.5 animations:^{
       self.categoryView.center = CGPointMake(self.view.frame.size.width + (self.categoryView.frame.size.width / 2), (self.view.frame.size.height - (self.categoryView.frame.size.height / 2) - 74));
+      self.categoryView.alpha = 0.0;
   }];
     
-    //self.categoryviewConstraintRightPosition.constant = -self.categoryView.frame.size.width;
     [self fetchData];
     [self.mainTableview reloadData];
 }
