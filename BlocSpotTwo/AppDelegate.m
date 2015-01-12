@@ -103,6 +103,9 @@
          (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
     }
     
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     MapViewController *mapVC = (MapViewController *)navigationController.topViewController;
     mapVC.managedObjectContext = self.managedObjectContext;
